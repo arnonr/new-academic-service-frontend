@@ -1,0 +1,5 @@
+const Category_vue_vue_type_style_index_0_scoped_da309e3c_lang = ".brand__item-6 img[data-v-da309e3c]{opacity:1}.brand__item-6>.project-link-img[data-v-da309e3c]:hover{filter:brightness(0) saturate(100%) invert(55%) sepia(77%) saturate(4539%) hue-rotate(0deg) brightness(101%) contrast(106%)}.bg-grey[data-v-da309e3c]{background-color:var(--tp-common-footer-bg-grey-4)}.project-card[data-v-da309e3c]{background-color:#ccc;border-color:var(--tp-common-footer-bg-grey-4);margin-left:10px;margin-right:10px;padding:50px 10px 20px;text-align:center}.card-img-top[data-v-da309e3c]{filter:invert(5%) sepia(40%) saturate(8%) hue-rotate(48deg) brightness(90%) contrast(99%);margin-bottom:10px;width:70%}.project-card[data-v-da309e3c]:hover{background-color:var(--tp-theme-1)}.project-card:hover .card-img-top[data-v-da309e3c]{filter:none}.project-name[data-v-da309e3c]{font-size:1.2em}";
+export {
+  Category_vue_vue_type_style_index_0_scoped_da309e3c_lang as default
+};
+//# sourceMappingURL=Category-styles-1.mjs-BUMoOzVc.js.map

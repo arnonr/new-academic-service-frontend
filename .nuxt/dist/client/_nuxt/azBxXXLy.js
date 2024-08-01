@@ -1,0 +1,1 @@
+import"./OmrnE3d5.js";const r=""+new URL("portfolio-details-slider-1.xp9efxvm.jpg",import.meta.url).href,i=""+new URL("portfolio-details-slider-2.DqC7cGqr.jpg",import.meta.url).href,o=""+new URL("portfolio-details-slider-3.DuDCkFeK.jpg",import.meta.url).href;export{i as a,o as b,r as i};

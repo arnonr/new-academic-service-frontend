@@ -1,0 +1,9 @@
+{
+  "_hash": "2JROrQ80HP",
+  "project": {
+    "rootDir": "/Applications/MAMP/htdocs/academic-service-new/frontend"
+  },
+  "versions": {
+    "nuxt": "3.12.2"
+  }
+}

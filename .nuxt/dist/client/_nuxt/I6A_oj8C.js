@@ -1,0 +1,1 @@
+import{ak as e}from"./OmrnE3d5.js";const n=(t,r)=>{let o={background:"linear-gradient(to right, #00b09b, #96c93d)"};r=="error"&&(o={backgroundColor:"#c62128",backgroundImage:"linear-gradient(147deg, #c62128 0%, #a00000 74%)"}),e({text:t,duration:3e3,newWindow:!0,close:!0,gravity:"top",position:"center",stopOnFocus:!0,style:o,onClick:function(){}}).showToast()};export{n as u};

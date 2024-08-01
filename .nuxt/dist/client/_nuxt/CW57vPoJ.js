@@ -1,0 +1,1 @@
+import{ag as e}from"./OmrnE3d5.js";const t=e("utils",{state:()=>({activeIndex:null,isCartMiniOpen:!1,isOffCanvasOpen:!1}),actions:{setIsActiveIndex(s){this.activeIndex=s},setIsCartMiniOpen(){this.isCartMiniOpen=!0},closeCartMini(){this.isCartMiniOpen=!1},setIsOffCanvasOpen(){this.isOffCanvasOpen=!0},setOffCanvasClose(){this.isOffCanvasOpen=!1}}});export{t as u};

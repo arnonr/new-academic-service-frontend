@@ -1,0 +1,1 @@
+export { default } from "file:///Applications/MAMP/htdocs/academic-service-new/frontend/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
