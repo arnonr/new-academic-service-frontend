@@ -1,3 +1,7 @@
+body {
+    font-family: 'Prompt';
+}
+
 .w-70-percent {
     width: 70%
 }
@@ -116,7 +120,7 @@ textarea {
 }
 
 a {
-    color: none;
+    color: #000;
     text-decoration: none;
 }
 
