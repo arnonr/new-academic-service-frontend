@@ -115,6 +115,11 @@ textarea {
     /* กำหนดสีของเครื่องหมาย * เป็นสีแดง */
 }
 
+a {
+    color: none;
+    text-decoration: none;
+}
+
 
 
 
