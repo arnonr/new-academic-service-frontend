@@ -75,7 +75,7 @@
 
                             <div class="form-group row mt-10">
                                 <label for="" class="label label-required"
-                                    >รูปภาพปก :
+                                    >รูปภาพปก 500x350 :
                                 </label>
                                 <div>
                                     <input

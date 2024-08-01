@@ -106,7 +106,7 @@
 
                             <div class="form-group row mt-10">
                                 <label for="" class="label label-required"
-                                    >รูปภาพปก :
+                                    >รูปภาพปก 300x200 :
                                 </label>
                                 <div class="col-sm-10">
                                     <input
