@@ -1,6 +1,7 @@
 <template>
     <HomeBanner />
     <HomeCategory />
+    <HomeServe />
     <HomeNews />
 </template>
 

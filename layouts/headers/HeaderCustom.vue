@@ -59,15 +59,15 @@
                                         />
                                     </span>
 
-                                    <span class="mr-0-5 fw-bold"> | </span>
+                                    <!-- <span class="mr-0-5 fw-bold"> | </span> -->
                                     <span class="mr-0-5">
                                         <!-- Google translate -->
-                                        <TranslateWidget />
+                                        <!-- <TranslateWidget /> -->
                                     </span>
 
                                     <span class="mr-0-5 fw-bold"> | </span>
                                     <span class="mr-0-5">
-                                        <button @click="openModal">
+                                        <button @click="openModal" class="ms-2">
                                             <i class="fas fa-search"></i>
                                         </button>
                                         <SearchModal
