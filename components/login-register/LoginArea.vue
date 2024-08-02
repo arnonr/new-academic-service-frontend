@@ -24,11 +24,11 @@
                                     <div class="login__input-wrapper">
                                         <div class="login__input-item">
                                             <div class="login__input">
-                                                <label for="email">Email</label>
+                                                <label for="email">ICIT Account</label>
                                                 <input
                                                     v-model="login.email"
                                                     type="text"
-                                                    placeholder="Email or Username"
+                                                    placeholder="ICIT Account"
                                                 />
                                             </div>
                                         </div>
