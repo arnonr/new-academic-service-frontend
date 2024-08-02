@@ -36,6 +36,7 @@
                         <!-- <mobile-menus /> -->
                         <nav>
                             <ul
+                                class="list-unstyled"
                                 v-if="
                                     (useCookie('user').value &&
                                         useCookie('user').value.group_id ==
@@ -73,6 +74,7 @@
                             </ul>
 
                             <ul
+                                class="list-unstyled"
                                 v-if="
                                     useCookie('user').value &&
                                     useCookie('user').value.group_id == 1
@@ -130,6 +132,7 @@
                     <!-- <h3 class="text-warning">ADMIN</h3> -->
                     <nav>
                         <ul
+                            class="list-unstyled"
                             v-if="
                                 (useCookie('user').value &&
                                     useCookie('user').value.group_id == 1) ||
@@ -166,6 +169,7 @@
                         </ul>
 
                         <ul
+                            class="list-unstyled"
                             v-if="
                                 useCookie('user').value &&
                                 useCookie('user').value.group_id == 1
@@ -207,12 +211,11 @@
                         </ul>
                     </nav>
 
-                    <div >
-                        
+                    <div>
                         <hr />
                         <a
                             @click="logout"
-                            class="ms-5"
+                            class="ms-4"
                             style="
                                 font-weight: 700;
                                 font-size: 20px;
@@ -259,7 +262,7 @@ export default {
             logUserOut();
             this.isOffCanvasOpen = false;
             useToast("ออกจากระบบเสร็จสิ้น", "success");
-            window.location.href = "/";
+            window.location.href = "/service";
             // this.authenticated = authenticated.value;
         },
     },
