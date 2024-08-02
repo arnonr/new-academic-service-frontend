@@ -207,7 +207,7 @@
                         </ul>
                     </nav>
 
-                    <div>
+                    <div >
                         <a
                             @click="logout"
                             style="
