@@ -346,6 +346,7 @@ const fetchNewsTypes = async () => {
     let data = await $fetch(`${apiBase}/news-type`, {
         params: {
             is_publish: 1,
+            perPage: 100,
         },
     }).catch((error) => error.data);
 
@@ -358,6 +359,7 @@ const fetchDepartments = async () => {
     let data = await $fetch(`${apiBase}/department`, {
         params: {
             is_publish: 1,
+            perPage: 100,
         },
     }).catch((error) => error.data);
 
@@ -385,6 +387,7 @@ const fetchServiceCategories = async () => {
     let data = await $fetch(`${apiBase}/service-category`, {
         params: {
             is_publish: 1,
+            perPage: 100,
         },
     }).catch((error) => error.data);
 
