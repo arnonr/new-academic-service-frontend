@@ -84,6 +84,7 @@ const fetchDepartments = async () => {
     let data = await $fetch(`${apiBase}/department`, {
         params: {
             is_publish: 1,
+            perPage: 100,
         },
     }).catch((error) => error.data);
 
