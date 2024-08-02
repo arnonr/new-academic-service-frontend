@@ -135,6 +135,14 @@ a {
     display: none !important;
 }
 
+
+@media only screen and (min-width: 1025px) {
+    .w-img-news[data-v-f089d84d] {
+        max-height: 200px;
+        min-height: 200px;
+    }
+}
+
 div.skin-dark {
     .table-admin {
         color: #a9acbd;

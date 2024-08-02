@@ -208,8 +208,11 @@
                     </nav>
 
                     <div >
+                        
+                        <hr />
                         <a
                             @click="logout"
+                            class="ms-4"
                             style="
                                 font-weight: 700;
                                 font-size: 20px;
