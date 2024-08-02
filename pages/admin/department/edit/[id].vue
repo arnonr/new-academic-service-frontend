@@ -35,7 +35,7 @@
                 <div class="col-12">
                     <div class="">
                         <div class="">
-                            <!-- <div class="form-group row mt-10">
+                            <!-- <div class="form-group mt-10">
                                 <label
                                     for="staticEmail"
                                     class="label"
@@ -60,7 +60,7 @@
                             </div> -->
 
                             <div
-                                class="form-group row mt-10"
+                                class="form-group mt-10"
                                 v-if="
                                     useCookie('user').value &&
                                     useCookie('user').value.group_id == 1
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ชื่อหน่วยงาน TH :
                                 </label>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ชื่อหน่วยงาน EN :
                                 </label>
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >รูปภาพปก 300x200 :
                                 </label>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >รายละเอียดหน่วยงาน :
                                 </label>
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ข้อมูลติดต่อ :
                                 </label>
@@ -163,7 +163,7 @@
                             </div>
 
                             <div
-                                class="form-group row mt-10"
+                                class="form-group mt-10"
                                 v-if="
                                     useCookie('user').value &&
                                     useCookie('user').value.group_id == 1

@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="">
                         <div class="">
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >หน่วยงาน :
                                 </label>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ประเภทข่าว :
                                 </label>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ประเภทการบริการวิชาการ :
                                 </label>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >รูปภาพปก 500x350 :
                                 </label>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >หัวข้อ :
                                 </label>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >เนื้อหาข่าว :
                                 </label>
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >วันที่ลงข้อมูล :
                                 </label>
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label"
                                     >รูปภาพเพิ่มเติม :
                                 </label>
@@ -190,7 +190,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >สถานะ :
                                 </label>

@@ -35,7 +35,7 @@
                 <div class="col-12">
                     <div class="">
                         <div class="">
-                            <!-- <div class="form-group row mt-10">
+                            <!-- <div class="form-group mt-10">
                                 <label
                                     for="staticEmail"
                                     class="label"
