@@ -92,26 +92,28 @@
                             </div>
 
                             <div class="form-group mt-10">
-                                <label for="" class="label label-required"
-                                    >รูปภาพปก 500x350 :
-                                </label>
-                                <div class="col-sm-10">
-                                    <input
-                                        ref="file"
-                                        class="form-control"
-                                        type="file"
-                                        id="formFile"
-                                    />
-                                </div>
-                                <div class="col-sm-2">
-                                    <a
-                                        :href="item.news_file_old"
-                                        target="_blank"
-                                        class="btn btn-primary"
-                                        style="width: 100%"
-                                    >
-                                        View Old File
-                                    </a>
+                                <div class="row">
+                                    <label for="col-sm-12" class="label label-required"
+                                        >รูปภาพปก 500x350 :
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input
+                                            ref="file"
+                                            class="form-control"
+                                            type="file"
+                                            id="formFile"
+                                        />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a
+                                            :href="item.news_file_old"
+                                            target="_blank"
+                                            class="btn btn-primary"
+                                            style="width: 100%"
+                                        >
+                                            View Old File
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 

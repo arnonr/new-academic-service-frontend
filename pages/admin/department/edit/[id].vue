@@ -105,26 +105,30 @@
                             </div>
 
                             <div class="form-group mt-10">
-                                <label for="" class="label label-required"
-                                    >รูปภาพปก 300x200 :
-                                </label>
-                                <div class="col-sm-10">
-                                    <input
-                                        ref="file"
-                                        class="form-control"
-                                        type="file"
-                                        id="formFile"
-                                    />
-                                </div>
-                                <div class="col-sm-2">
-                                    <a
-                                        :href="item.department_file_old"
-                                        target="_blank"
-                                        class="btn btn-primary"
-                                        style="width: 100%"
-                                    >
-                                        View Old File
-                                    </a>
+                                <div class="row">
+                                    <label
+                                        for="col-sm-12"
+                                        class="label label-required"
+                                        >รูปภาพปก 300x200 :
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input
+                                            ref="file"
+                                            class="form-control"
+                                            type="file"
+                                            id="formFile"
+                                        />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a
+                                            :href="item.department_file_old"
+                                            target="_blank"
+                                            class="btn btn-primary"
+                                            style="width: 100%"
+                                        >
+                                            View Old File
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -173,15 +177,17 @@
                                     >สถานะ :
                                 </label>
                                 <div>
-                                    <v-select
-                                        label="name_th"
-                                        placeholder="การเผยแพร่"
-                                        :options="selectOptions.publishes"
-                                        id="slt-is_publish"
-                                        v-model="item.is_publish"
-                                        class="v-select-no-border"
-                                        :clearable="true"
-                                    ></v-select>
+                                    <client-only>
+                                        <v-select
+                                            label="name_th"
+                                            placeholder="การเผยแพร่"
+                                            :options="selectOptions.publishes"
+                                            id="slt-is_publish"
+                                            v-model="item.is_publish"
+                                            class="v-select-no-border"
+                                            :clearable="true"
+                                        ></v-select
+                                    ></client-only>
                                 </div>
                             </div>
                             <!-- btn save -->

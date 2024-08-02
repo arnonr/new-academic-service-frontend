@@ -35,7 +35,7 @@
                 <div class="col-12">
                     <div class="">
                         <div class="">
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >หน่วยงาน :
                                 </label>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-20">
                                 <label for="" class="label label-required"
                                     >ประเภทการบริการวิชาการ :
                                 </label>
@@ -73,31 +73,35 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
-                                <label for="" class="label label-required"
-                                    >รูปภาพปก 500x350 :
-                                </label>
-                                <div class="col-sm-10">
-                                    <input
-                                        ref="file"
-                                        class="form-control"
-                                        type="file"
-                                        id="formFile"
-                                    />
-                                </div>
-                                <div class="col-sm-2">
-                                    <a
-                                        :href="item.serve_file_old"
-                                        target="_blank"
-                                        class="btn btn-primary"
-                                        style="width: 100%"
-                                    >
-                                        View Old File
-                                    </a>
+                            <div class="form-group mt-10">
+                                <div class="row">
+                                    <label
+                                        for="col-sm-12"
+                                        class="label label-required"
+                                        >รูปภาพปก 500x350 :
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input
+                                            ref="file"
+                                            class="form-control"
+                                            type="file"
+                                            id="formFile"
+                                        />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a
+                                            :href="item.serve_file_old"
+                                            target="_blank"
+                                            class="btn btn-primary"
+                                            style="width: 100%"
+                                        >
+                                            View Old File
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >หัวข้อ :
                                 </label>
@@ -110,7 +114,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >รายละเอียด :
                                 </label>
@@ -127,7 +131,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >อัตราค่าใช้บริการ :
                                 </label>
@@ -144,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >สถานที่ :
                                 </label>
@@ -161,7 +165,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ข้อมูลติดต่อ :
                                 </label>
@@ -178,7 +182,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-10">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >สถานะ :
                                 </label>
@@ -410,7 +414,7 @@ item.value.is_publish =
 
 // Event
 const onSubmit = async () => {
-    console.log()
+    console.log();
     if (
         item.value.is_publish == null ||
         item.value.is_publish.value == null ||
