@@ -138,14 +138,27 @@ a {
 
 @media only screen and (min-width: 1025px) {
     .w-img-news[data-v-f089d84d] {
-        max-height: 200px;
-        min-height: 200px;
+        max-height: 200px !important;
+        min-height: 200px !important;
     }
 }
 
 div.skin-dark {
+
+    .section-bg-primary {
+        color: #000
+    }
+
     .table-admin {
         color: #a9acbd;
+    }
+
+    a {
+        color: #a9acbd
+    }
+
+    a:hover {
+        color: #f60
     }
 
     .table-striped>tbody>tr:nth-of-type(odd)>* {
@@ -171,6 +184,10 @@ div.skin-dark {
     /* #191c2a */
 
     .bg-grey[data-v-1f73f8dc] {
+        background-color: #191c2a;
+    }
+
+    .bg-grey {
         background-color: #191c2a;
     }
 

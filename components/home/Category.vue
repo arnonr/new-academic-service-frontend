@@ -1,5 +1,5 @@
 <template>
-  <section :class="`brand__area ${el_style ? 'pt-30' : ''} bg-grey`">
+  <section :class="`${el_style ? 'pt-30' : ''} bg-grey`">
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 mb-20">

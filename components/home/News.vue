@@ -1,5 +1,5 @@
 <template>
-    <section class="portfolio__area pt-40 pb-40 bg-grey">
+    <section class="portfolio__area pt-40 pb-40">
         <hr />
         <div class="container">
             <div class="row">
