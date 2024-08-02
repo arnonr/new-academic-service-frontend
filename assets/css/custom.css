@@ -130,6 +130,11 @@ a {
     text-decoration: none;
 }
 
+
+.fr-wrapper a[href*="froala.com/wysiwyg-editor"] {
+    display: none !important;
+}
+
 div.skin-dark {
     .table-admin {
         color: #a9acbd;
