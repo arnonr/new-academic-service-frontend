@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mt-20">
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >ประเภทการบริการวิชาการ :
                                 </label>
