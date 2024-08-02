@@ -110,7 +110,12 @@
                                             วันที่ลงข่าว
                                         </th>
                                         <th class="text-center">สถานะ</th>
-                                        <th class="text-center">จัดการ</th>
+                                        <th
+                                            class="text-center"
+                                            style="min-width: 150px"
+                                        >
+                                            จัดการ
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length != 0">
@@ -194,7 +199,7 @@
                             @update:currentPage="currentPage = $event"
                         />
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </section>
