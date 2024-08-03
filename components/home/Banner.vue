@@ -7,6 +7,9 @@
             :effect="'fade'"
             :loop="true"
             :modules="modules"
+            :preventClicks="false"
+            :preventClicksPropagation="false"
+            :slideToClickedSlide="false"
             :autoplay="{
                 delay: 5000,
                 disableOnInteraction: true,
@@ -21,9 +24,9 @@
             v-if="items.length != 0"
         >
             <swiper-slide
+                :class="`slider__item-11 slider__bg-11 ${it.bg} d-flex align-items-center`"
                 v-for="it in items"
                 :key="it.id"
-                :class="`slider__item-12 slider__bg-12 ${it.bg} d-flex align-items-center`"
             >
                 <a :href="it.banner_url">
                     <img
@@ -110,5 +113,9 @@ export default {
 
 .slider__nav-arrow-12 button {
     border-radius: 50%;
+}
+/*  */
+.swiper-slide {
+    overflow: visible; /* ตรวจสอบให้แน่ใจว่าไม่ถูกตั้งค่าเป็น hidden */
 }
 </style>
