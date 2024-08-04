@@ -27,7 +27,10 @@ export default defineNuxtConfig({
             },
         ],
     ],
-    plugins: ["~/plugins/toastify.js"],
+    plugins: [
+        { src: "~/plugins/toastify.js" },
+        // { src: "~/plugins/froala-editor.client.js", mode: "client" },
+    ],
     // imports: {
     //     dirs: ["store"],
     // },
@@ -35,7 +38,13 @@ export default defineNuxtConfig({
     app: {
         head: {
             title: "งานบริการวิชาการ มจพ.",
-            link: [{ rel: "icon", type: "image/x-icon", href: "/service/favicon.ico" }],
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/x-icon",
+                    href: "/service/favicon.ico",
+                },
+            ],
             script: [
                 {
                     src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",
@@ -45,5 +54,10 @@ export default defineNuxtConfig({
                 },
             ],
         },
+        // css: [
+        //     '~/node_modules/vue-wysiwyg/dist/vueWysiwyg.css',
+        //     '~/node_modules/froala-editor/css/froala_editor.pkgd.min.css',
+        //     '~/node_modules/froala-editor/css/froala_style.min.css'
+        // ],
     },
 });

@@ -6,7 +6,7 @@ export default {
                 return {
                     height: 300,
                     // inlineMode: false,
-                    pastePlain: true,
+                    pastePlain: false,
                     paragraphy: false,
                     quickInsertEnabled: false,
                     toolbarButtons: [
@@ -15,6 +15,8 @@ export default {
                         "fullscreen",
                         "|",
                         "fontSize",
+                        "textColor",
+                        "backgroundColor",
                         "color",
                         "bold",
                         "italic",
@@ -38,7 +40,6 @@ export default {
                         "insertFile",
                         "insertTable",
                         "|",
-                        "fontAwesome",
                         "insertHR",
                         "selectAll",
                         "clearFormatting",
@@ -46,7 +47,12 @@ export default {
                         "print",
                         "getPDF",
                         "html",
+                        // "codeBeautifier",
+                        "wirisEditor",
+                        "wirisChemistry",
+                        "fontAwesome",
                     ],
+                    // faButtons: ["fontAwesomeBack", "|"],
                     // Change buttons for XS screen.
                     toolbarButtonsXS: [
                         ["undo", "redo"],
@@ -58,6 +64,10 @@ export default {
                             "superscript",
                         ],
                     ],
+                    htmlAllowedTags: ['.*','i', 'em', 'strong', 'a', 'br', 'ul', 'li'],
+                    htmlAllowedAttrs: ['.*','class', 'href', 'target', 'style'],
+                    
+                    // htmlAllowedEmptyTags: ["mprescripts", "none"],
                     placeholderText: "",
                     attribution: false,
                     key: "enter-your-license-key-here",
@@ -72,6 +82,12 @@ export default {
                     imagePasteProcess: false,
                     imageResize: true,
                     crossDomain: true,
+                    pasteAllowedStyleProps: ["*"],
+                    pasteAllowLocalImages: true,
+                    htmlAllowComments: true,
+                    htmlExecuteScripts: true,
+                    fontSizeSelection: true,
+                    fontSizeDefaultSelection: "18",
                 };
             },
         };

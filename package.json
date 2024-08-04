@@ -21,6 +21,7 @@
     "@uppy/vue": "^2.0.0",
     "@uppy/xhr-upload": "^4.0.2",
     "@vuepic/vue-datepicker": "^9.0.1",
+    "@wiris/mathtype-froala3": "^7.31.1",
     "@yeger/vue-masonry-wall": "^3.4.3",
     "bootstrap": "^5.2.3",
     "dayjs": "^1.11.12",
