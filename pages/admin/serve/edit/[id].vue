@@ -232,7 +232,6 @@ import "toastify-js/src/toastify.css";
 import froala_data from "~~/mixins/froalaData";
 import basic_data from "~~/mixins/basicData";
 import { useRuntimeConfig } from "#app";
-import "@wiris/mathtype-froala3";
 
 import buddhistEra from "dayjs/plugin/buddhistEra";
 dayjs.extend(buddhistEra);

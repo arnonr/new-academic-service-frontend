@@ -266,6 +266,23 @@ const initFroala = () => {
         },
         "commands.after": function (cmd, param1, param2) {
             item.value.detail_th = this.html.get();
+
+            const froalaAttribution =
+                document.querySelectorAll('[data-f-id="pbf"]');
+            if (froalaAttribution) {
+                froalaAttribution.forEach((el) => {
+                    if (
+                        el.style.textAlign === "center" &&
+                        el.style.fontSize === "14px" &&
+                        el.style.marginTop === "30px" &&
+                        el.style.opacity === "0.65" &&
+                        el.style.fontFamily === "sans-serif"
+                    ) {
+                        // ดำเนินการที่นี่ถ้าสไตล์ตรงกัน
+                        el.remove();
+                    }
+                });
+            }
         },
         "paste.after": function (pasteEvent) {
             item.value.detail_th = this.html.get();

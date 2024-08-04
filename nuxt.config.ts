@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     ],
     plugins: [
         { src: "~/plugins/toastify.js" },
+        { src: "~/plugins/froala-editor.client.js", mode: "client" },
         // { src: "~/plugins/froala-editor.client.js", mode: "client" },
     ],
     // imports: {
