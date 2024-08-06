@@ -293,6 +293,10 @@ const fetchItems = async () => {
             search.value.news_type_id == null
                 ? undefined
                 : search.value.news_type_id.value,
+        department_id:
+            search.value.department_id == null
+                ? undefined
+                : search.value.department_id.value,
         perPage: perPage.value,
         currentPage: currentPage.value,
     };
