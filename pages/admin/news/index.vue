@@ -301,6 +301,10 @@ const fetchItems = async () => {
         currentPage: currentPage.value,
     };
 
+    if (useCookie("user").value && useCookie("user").value.group_id == 2) {
+        params["department_id"] = useCookie("user").value.department_id;
+    }
+
     let data = await $fetch(`${apiBase}/news`, {
         params: params,
     }).catch((error) => error.data);
