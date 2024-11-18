@@ -1,0 +1,232 @@
+<template>
+    <div>
+        <form class="d-flex me-3">
+            <input
+                style="min-width: 150px"
+                ref="searchInput"
+                v-model="textSearch"
+                class="form-control input-tranparent"
+                type="search"
+                placeholder="ค้นหา..."
+                aria-label="Search"
+            />
+        </form>
+
+        <!-- Search Modal -->
+        <div
+            ref="courseSearchOffcanvas"
+            class="offcanvas offcanvas-start fade w-100"
+            style="top: 70px"
+            data-bs-scroll="true"
+            data-bs-backdrop="false"
+            tabindex="-1"
+            id="offcanvasScrolling"
+            aria-labelledby="offcanvasScrollingLabel"
+        >
+            <div class="container mx-auto">
+                <div class="offcanvas-header">
+                    <h5
+                        class="offcanvas-title mt-40"
+                        id="offcanvasScrollingLabel"
+                    >
+                        <span v-if="textSearch == ''"
+                            >หัวข้อที่มีการค้นหามากที่สุด</span
+                        >
+                        <span v-else
+                            >12 ผลลัพธ์สำหรับการค้นหา
+                            <span class="text-main"
+                                >“{{ textSearch }}”</span
+                            ></span
+                        >
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                    ></button>
+                </div>
+
+                <div
+                    class="offcanvas-header border-bottom border-block-end-dashed"
+                >
+                    <div class="btn-list">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-primary-light btn-wave"
+                        >
+                            วิศวกรรม
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-primary-light btn-wave"
+                        >
+                            เทคโนโลยี
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-primary-light btn-wave"
+                        >
+                            การบริหาร
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-primary-light btn-wave"
+                        >
+                            การจัดการ
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-primary-light btn-wave"
+                        >
+                            ประกัน
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="offcanvas-body"
+                    style="max-height: 90vh; overflow-y: auto"
+                >
+                    <div class="row">
+                        <div
+                            v-for="(it, idx) in items"
+                            class="col-12 col-md-12 text-start"
+                        >
+                            <ListGridItem2
+                                :item="{
+                                    link: 'serve/',
+                                    id: it.id,
+                                    title: it.title,
+                                    file: it.serve_file,
+                                }"
+                            />
+                        </div>
+
+                        <div class="col-xxl-12">
+                            <div class="tp-pagination mt-30">
+                                <blog-pagination
+                                    :totalPage="totalPage"
+                                    :currentPage="currentPage"
+                                    :totalItems="totalItems"
+                                    @update:currentPage="currentPage = $event"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            class="card-footer text-center pe-2 mt-4"
+                            style="margin-bottom: 130px"
+                            v-once
+                        >
+                            <button class="btn btn-outline-main">
+                                ดูทั้งหมด
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Search Modal -->
+    </div>
+</template>
+
+<script>
+import { ref, onMounted } from "vue";
+import { useRuntimeConfig } from "#app";
+import BlogPagination from "~/components/common/pagination/BlogPagination.vue";
+
+export default {
+    components: {
+        BlogPagination,
+    },
+    async setup() {
+        const runtimeConfig = useRuntimeConfig();
+
+        const perPage = ref(12);
+        const currentPage = ref(1);
+        const totalPage = ref(1);
+        const totalItems = ref(0);
+        const searchInput = ref(null);
+        const courseSearchOffcanvas = ref(null);
+        const textSearch = ref("");
+        const search = ref({
+            is_pubush: 1,
+        });
+
+        const items = ref([]);
+
+        watch(
+            [currentPage, search],
+            () => {
+                router.replace({
+                    name: "serve",
+                    query: { page: currentPage.value },
+                });
+                refreshNuxtData("serve");
+            },
+            { deep: true }
+        );
+
+        onMounted(() => {
+            if (searchInput.value) {
+                searchInput.value.addEventListener("focus", () => {
+                    if (courseSearchOffcanvas.value) {
+                        const courseSearchInstance = new bootstrap.Offcanvas(
+                            courseSearchOffcanvas.value
+                        );
+                        courseSearchInstance.show();
+                    }
+                });
+
+                courseSearchOffcanvas.value.addEventListener(
+                    "hidden.bs.offcanvas",
+                    () => {
+                        search.value = "";
+                    }
+                );
+            }
+        });
+        const { data: res } = await useAsyncData(
+            "search-serve",
+            async () => {
+                let data = await $fetch(
+                    `${runtimeConfig.public.apiBase}/serve`,
+                    {
+                        params: {
+                            textSearch: textSearch.value,
+                            ...search.value,
+                            perPage: 8,
+                            currentPage: 1,
+                            orderBy: "id",
+                            order: "desc",
+                            lang: useCookie("lang").value,
+                        },
+                    }
+                );
+
+                return data && data.data ? { data: data.data } : { data: [] };
+            },
+            {
+                initialCache: true, // ช่วยแคชข้อมูลที่ดึงมาใน SSR เพื่อให้ Client ไม่ต้องเรียกซ้ำ
+                default: () => ({ data: [] }), // กำหนดค่าเริ่มต้นเพื่อหลีกเลี่ยง null หรือ undefined
+            }
+        );
+
+        if (res.value != null) {
+            items.value = res.value.data;
+        }
+
+        return {
+            items,
+            searchInput,
+            search,
+            textSearch,
+            courseSearchOffcanvas,
+            perPage,
+            currentPage,
+            totalPage,
+            totalItems,
+        };
+    },
+};
+</script>

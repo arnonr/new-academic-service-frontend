@@ -1,6 +1,8 @@
 <template>
+    <CommonBanner />
+
     <section class="portfolio__area pt-40 pb-40">
-        <div class="container">
+        <div class="container mb-20">
             <div class="row">
                 <div class="col-md-4 mb-20">
                     <div class="" v-if="selectOptions.departments.length != 0">
@@ -24,11 +26,11 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="blog__list-item-wrapper">
-                                <div class="row gx-2 grid">
+                                <div class="row gx-3 grid ">
                                     <ListItem
                                         v-for="(it, i) in items"
                                         :key="i"
-                                        class="col-xxl-3 col-xl-3 col-lg-6 col-md-6"
+                                        class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 "
                                         :item="mapItemToProps(it)"
                                     />
                                 </div>
@@ -103,6 +105,7 @@ const { data: resDepartment } = await useAsyncData("Department", async () => {
     let data = await $fetch(`${apiBase}/department`, {
         params: {
             is_publish: 1,
+            perPage: 100,
         },
     });
 

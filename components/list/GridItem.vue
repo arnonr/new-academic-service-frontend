@@ -22,6 +22,15 @@
                             item.title
                         }}</nuxt-link>
                     </h3>
+
+                    <div>
+                        <i class="fa fa-home text-main"></i>
+                        <span class="text-gray-500"> คณะวิศวกรรมศาสตร์</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-money-bill text-main"></i>
+                        <span class="text-gray-500"> 4,500 บาท</span>
+                    </div>
                 </div>
                 <div
                     class="blog__content-10-bottom d-flex align-items-center justify-content-between"
@@ -31,12 +40,12 @@
                             <nuxt-link
                                 v-if="item.file"
                                 :to="item.link + item.id"
-                                class="text-color-primary text-uppercase"
+                                class="text-uppercase btn btn-primary btn-sm rounded-1"
                             >
                                 {{
                                     item.link == "equipment-and-rate/"
-                                        ? 'รายละเอียด'
-                                        : 'อ่านต่อ'
+                                        ? "รายละเอียด"
+                                        : "อ่านต่อ"
                                 }}
                                 <i class="fa fa-arrow-right news-link-view"></i>
                             </nuxt-link>
@@ -48,7 +57,7 @@
                                 class="fa-regular fa-tag"
                                 style="margin-right: 0px; color: #bdbdc6"
                             ></i>
-                            {{ item.type_name }}
+                            {{ item.type_name }}ยานยนต์
                         </span>
                     </div>
                 </div>

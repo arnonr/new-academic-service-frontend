@@ -1,13 +1,19 @@
 <template>
     <HomeBanner />
-    <HomeCategory />
     <HomeServe />
-    <HomeNews />
+    <HomeType />
+    <HomeAbout />
+    <HomeCategory />
+    <HomeFaq />
+    <!-- <HomeNews /> -->
 </template>
 
 <script setup>
 import { onMounted } from "vue";
-import LayoutCustom from "~/layouts/LayoutCustom.vue";
+
+definePageMeta({
+    layout: "layout-home",
+});
 
 useHead({
     title: "งานบริการวิชาการ มจพ.",

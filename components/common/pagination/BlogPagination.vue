@@ -176,4 +176,8 @@ const onChangePage = (type) => {
     background-color: #ccc !important;
     cursor: default;
 }
+
+.page-link-disabled:hover {
+    color: var(--tp-text-1) !important;
+}
 </style>

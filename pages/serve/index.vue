@@ -1,48 +1,110 @@
 <template>
-    <section class="portfolio__area pt-40 pb-40">
-        <div class="container">
-            <div class="row">
-                <div
-                    v-for="(select, index) in selectOptionsFields"
-                    :key="index"
-                    class="col-md-4 mb-20"
-                >
-                    <client-only>
-                        <v-select
-                            v-if="selectOptions[select.options].length"
-                            v-model="search[select.model]"
-                            :label="select.label"
-                            :placeholder="select.placeholder"
-                            :options="selectOptions[select.options]"
-                            class="v-select-no-border"
-                            :clearable="true"
-                        />
-                    </client-only>
-                </div>
+    <CommonBanner />
 
-                <div class="col-md-4 mb-20">
-                    <input
-                        v-model="search.text_all"
-                        class="form-control"
-                        type="text"
-                        placeholder="ค้นหางานบริการวิชาการ (พิมพ์ 3 ตัวอักษร)"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="container" v-if="items.length != 0">
+    <section class="section bg-white pt-10 mt-40">
+        <div class="container mb-5">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="blog__list-item-wrapper">
-                                <NewsListItem
-                                    v-for="(it, i) in items"
-                                    :key="i"
-                                    :item="mapItemToProps(it)"
-                                />
+                <!-- Filter Section -->
+                <div class="col-lg-3 filter-section d-none d-lg-block">
+                    <div class="p-4">
+                        <h6 class="text-main mb-4 fw-bold">
+                            ตัวกรองบริการวิชาการ
+                        </h6>
+                        <h6 class="mt-4 fw-bold">หมวดหมู่</h6>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="shortDuration"
+                            />
+                            <label
+                                class="form-check-label fs-12"
+                                for="shortDuration"
+                                >วิศวกรรมศาสตร์
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="shortDuration"
+                            />
+                            <label
+                                class="form-check-label fs-12"
+                                for="shortDuration"
+                            >
+                                การบินและอวกาศ
+                            </label>
+                        </div>
+
+                        <div class="mt-6"><hr /></div>
+
+                        <h6 class="mt-4 fw-bold">ประเภท</h6>
+                        <select class="form-select mb-3 form-control fs-12">
+                            <option selected>อบรม</option>
+                            <option value="1">วิศวกรรม</option>
+                            <option value="2">เทคโนโลยี</option>
+                        </select>
+                        <h6 class="mt-4 fw-bold">หน่วยงาน</h6>
+                        <select class="form-select mb-3 form-control fs-12">
+                            <option value="1">วิศวกรรม</option>
+                            <option value="2">เทคโนโลยี</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Course List Section -->
+                <div class="col-lg-9">
+                    <!-- Search Bar -->
+                    <div class="position-relative mb-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-search text-muted"></i>
+                            </span>
+                            <input
+                                type="text"
+                                class="form-control input-serve-search"
+                                placeholder="ค้นหา"
+                                aria-label="Example text with button addon"
+                                aria-describedby="button-addon1"
+                            />
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                id="button-addon1"
+                            >
+                                ค้นหา
+                            </button>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-30 mb-30">
+                            <div class="fs-12">
+                                ผลลัพธ์การค้นหา {{ items.length }} หลักสูตร
+                            </div>
+                            <div class="fs-12">
+                                <select name="" id="" class="form-select">
+                                    <option value="">ทั้งหมด</option>
+                                    <option value="">ใหม่ล่าสุด</option>
+                                    <option value="">เรียงจากตัวอักษร</option>
+                                </select>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Courses Listing -->
+                    <div class="row">
+                        <div v-for="(it, idx) in items" class="col-12 col-md-12">
+                            <ListGridItem2
+                                :item="{
+                                    link: 'serve/',
+                                    id: it.id,
+                                    title: it.title,
+                                    file: it.serve_file,
+                                }"
+                            />
+                        </div>
+
                         <div class="col-xxl-12">
                             <div class="tp-pagination mt-30">
                                 <blog-pagination
@@ -60,6 +122,7 @@
     </section>
 </template>
 
+
 <script setup>
 import dayjs from "dayjs";
 import "dayjs/locale/th";
@@ -74,6 +137,7 @@ const route = useRoute();
 const router = useRouter();
 const config = useRuntimeConfig();
 const { apiBase } = config.public;
+
 
 const items = ref([]);
 const perPage = ref(12);
@@ -142,7 +206,7 @@ const mapItemToProps = (item) => ({
     dep_name: item.department.name_th,
 });
 
-// fetch
+// // fetch
 const { data: departmentsData } = await useAsyncData("departments", () =>
     fetchOptions("department", { is_publish: 1 })
 );
@@ -218,4 +282,17 @@ useHead({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+input[type="text"].input-serve-search,
+textarea {
+    background-color: #ffffff;
+    height: auto !important;
+    line-height: 2.2em;
+    margin-top: 0px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: var(--vs-border-width) var(--vs-border-style) var(--vs-border-color);
+}
+</style>
+
+

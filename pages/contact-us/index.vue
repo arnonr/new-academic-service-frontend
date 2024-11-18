@@ -1,33 +1,6 @@
 <template>
-    <section class="breadcrumb__area include-bg pb-40 pt-30 grey-bg-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-12" v-if="item != null">
-                    <div class="breadcrumb__content p-relative z-index-1">
-                        <!-- <h4 class="breadcrumb__title">
-                  {{ item.title }}
-                </h4> -->
-
-                        <div class="breadcrumb__list">
-                            <span>
-                                <NuxtLink
-                                    :to="{
-                                        path: '/',
-                                    }"
-                                >
-                                    หน้าหลัก
-                                </NuxtLink>
-                            </span>
-                            <span class="dvdr"
-                                ><i class="fa-solid fa-circle-small"></i
-                            ></span>
-                            <span> {{ item.title }} </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  
+  <CommonBanner />
     <!--  -->
     <section class="postbox__area pt-40 pb-120">
         <div class="container">
@@ -41,14 +14,14 @@
                                     class="col-sm-12 col-md-12 col-12"
                                     style="border-left: 0.7em solid #f60"
                                 >
-                                    <h2>{{ item.title }}</h2>
-                                    <h2 style="color: #f60">
+                                    <h3>{{ item.title }}</h3>
+                                    <h3 style="color: #f60">
                                         <span>งานบริการวิชาการ</span>
                                         <br />
                                         <span
                                             >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</span
                                         >
-                                    </h2>
+                                    </h3>
                                 </div>
                             </div>
 

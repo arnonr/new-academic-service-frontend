@@ -5,47 +5,71 @@
             !item.file ? 'no-img' : ''
         }`"
     >
-        <div class="blog__item-10 white-bg transition-3 mb-30 fix">
+        <div class="blog__item-10 white-bg transition-3 mb-30 fix shadow-hover">
             <div class="blog__thumb-10 w-img fix w-img-news">
                 <nuxt-link v-if="item.file" :to="item.link + item.id">
                     <img :src="item.file" alt="blog img" class="img-news" />
                 </nuxt-link>
+                <div v-else class="placeholder-img">
+                    <i class="fa fa-image"></i>
+                </div>
             </div>
-            <div class="blog__content-10">
-                <div class="blog__content-10-top">
+            <div class="blog__content-10" >
+                <div class="blog__content-10-top" style="min-height:180px;">
                     <div v-if="!item.file" class="blog__tag-10">
                         <a href="#">{{ item.type_name }}</a>
                     </div>
 
-                    <h3 class="blog__title-10">
+                    <h3 class="blog__title-10" style="min-height:45px;">
                         <nuxt-link :to="item.link + item.id">{{
                             item.title
                         }}</nuxt-link>
                     </h3>
+
+                    <div class="blog__meta-10 blog-meta-10-2">
+                        <div>
+                            <span>
+                                <i
+                                    class="fa fa-envelope"
+                                    style="margin-right: 5px"
+                                ></i>
+                                tongfreedom@gmail.com
+                            </span>
+                        </div>
+                        <div class="mt-1">
+                            <span>
+                                <i
+                                    class="fa fa-phone"
+                                    style="margin-right: 5px"
+                                ></i>
+                                086-123-4567
+                            </span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- <div>
+                    <hr
+                        class="hr"
+                        style="margin-top: 0px; margin-bottom: 0px; color: #ccc"
+                    />
+                </div> -->
                 <div
                     class="blog__content-10-bottom d-flex align-items-center justify-content-between"
                 >
-                    <div class="blog__meta-author-10 d-flex align-items-center">
-                        <div class="blog__meta-author-content-10">
+                    <div
+                        class="blog__meta-author-10 d-flex align-items-center w-100"
+                    >
+                        <div class="blog__meta-author-content-10 w-100">
                             <nuxt-link
                                 v-if="item.file"
                                 :to="item.link + item.id"
-                                class="text-color-primary text-uppercase"
+                                class="text-uppercase btn btn-primary rounded-4 btn-main-gradient w-100 shadow-sm"
                             >
-                                รายละเอียด
-                                <i class="fa fa-arrow-right news-link-view"></i>
+                                ข้อมูลบริการ
+                                <!-- <i class="fa fa-arrow-right news-link-view"></i> -->
                             </nuxt-link>
                         </div>
-                    </div>
-                    <div class="blog__meta-10 blog-meta-10-2">
-                        <!-- <span>
-                            <i
-                                class="fa-regular fa-tag"
-                                style="margin-right: 0px; color: #bdbdc6"
-                            ></i>
-                            {{ item.type_name }}
-                        </span> -->
                     </div>
                 </div>
             </div>

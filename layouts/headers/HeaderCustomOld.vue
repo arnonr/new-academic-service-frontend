@@ -2,9 +2,7 @@
     <header>
         <div class="header__area">
             <!-- Header First -->
-            <div
-                class="header__top-4 header__padding-4 d-block d-lg-none mt-20 mb-20"
-            >
+            <div class="header__top-4 header__padding-4">
                 <div class="container">
                     <div class="row align-items-center">
                         <!-- Logo KMUTNB -->
@@ -39,7 +37,7 @@
                                 <div
                                     class="header__info-wrapper-4 d-flex align-items-center justify-content-center"
                                 >
-                                    <!-- <span
+                                    <span
                                         class="mr-0-5 item-link"
                                         @click="changeSkin()"
                                     >
@@ -59,15 +57,15 @@
                                                 useSkin().value == 'skin-dark'
                                             "
                                         />
-                                    </span> -->
+                                    </span>
 
                                     <!-- <span class="mr-0-5 fw-bold"> | </span> -->
-                                    <!-- <span class="mr-0-5"> -->
-                                    <!-- Google translate -->
-                                    <!-- <TranslateWidget /> -->
-                                    <!-- </span> -->
+                                    <span class="mr-0-5">
+                                        <!-- Google translate -->
+                                        <!-- <TranslateWidget /> -->
+                                    </span>
 
-                                    <!-- <span class="mr-0-5 fw-bold"> | </span>
+                                    <span class="mr-0-5 fw-bold"> | </span>
                                     <span class="mr-0-5">
                                         <button @click="openModal" class="ms-2">
                                             <i class="fas fa-search"></i>
@@ -77,8 +75,7 @@
                                             @close="closeModal"
                                             @search="handleSearch"
                                         />
-                                    </span> -->
-                                    <HomeSearch />
+                                    </span>
 
                                     <!-- hamburgur menu Mobile-->
                                     <div
@@ -162,20 +159,9 @@
             <div class="header__bottom-4 d-none d-lg-block">
                 <div class="container">
                     <div class="mega-menu-wrapper p-relative">
-                        <div class="row align-items-center topbar">
+                        <div class="row align-items-center">
                             <div
-                                class="col-xxl-2 col-xl-2 col-lg-2 text-center"
-                            >
-                                <NuxtLink to="/">
-                                    <img
-                                        src="~/assets/img/logo/logo-kmutnb-final.jpg"
-                                        class="w-70-percent"
-                                        alt=""
-                                    />
-                                </NuxtLink>
-                            </div>
-                            <div
-                                class="col-xxl-8 col-xl-8 col-lg-8 text-center"
+                                class="col-xxl-12 col-xl-12 col-lg-12 text-center"
                             >
                                 <div
                                     class="main-menu main-menu-4 main-menu-ff-space"
@@ -184,17 +170,6 @@
                                         <menus />
                                     </nav>
                                 </div>
-                            </div>
-                            <!-- <div
-                                class="col-xxl-1 col-xl-1 col-lg-1 text-center"
-                            >
-                                <HomeSearch />
-                            </div> -->
-                            <div
-                                class="col-xxl-2 col-xl-2 col-lg-2 text-center d-flex"
-                            >
-                                <HomeSearch />
-                                <TranslateWidget />
                             </div>
                         </div>
                     </div>
@@ -209,7 +184,7 @@
 </template>
 
 <script>
-import menus from "./MenusCustom.vue";
+import menus from "./menus.vue";
 import OffCanvasCustom from "~~/components/common/off-canvas/OffCanvasCustom.vue";
 import TranslateWidget from "~~/components/translate/GoogleTranslateWidget.vue";
 import SearchModal from "~~/components/search/SearchModal.vue";
@@ -274,14 +249,8 @@ export default {
 <style scoped>
 .header__bottom-4 {
     background-color: #f60;
-    /* color:black; */
-    /* border-top: 4px solid #000;*/
-    border-bottom: 1px solid #999; 
-    width: 100%;
     line-height: 2.5em;
-    padding-top: 0.5em;
-    min-height: 5em;
-    /* border: none; */
+    border-top: 4px solid #000;
 }
 
 .header__padding-4 {
@@ -294,17 +263,9 @@ export default {
 }
 
 .img-header-logo {
-    width: 100%;
-}
-
-.topbar {
-    /* margin-top: 1.5em; */
-    /* border: 2px solid #ddd;
-    border-radius: 10px;
+    width: 25%;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 5px;
-    background: #f2f2f2; */
 }
 
 @media (max-width: 900px) {

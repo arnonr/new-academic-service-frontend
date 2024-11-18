@@ -74,6 +74,24 @@
                             </div>
 
                             <div class="form-group mt-10">
+                                <label for="" class="label label-required"
+                                    >หมวดหมู่การบริการวิชาการ :
+                                </label>
+                                <div>
+                                    <client-only>
+                                        <v-select
+                                            label="title"
+                                            placeholder="หมวดหมู่การบริการวิชาการ"
+                                            :options="selectOptions.types"
+                                            v-model="item.type_id"
+                                            class="v-select-no-border"
+                                            :clearable="true"
+                                        ></v-select>
+                                    </client-only>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-10">
                                 <div class="row">
                                     <label
                                         for="col-sm-12"
@@ -116,6 +134,19 @@
 
                             <div class="form-group mt-10">
                                 <label for="" class="label label-required"
+                                    >รายละเอียโดยย่อ :
+                                </label>
+                                <div>
+                                    <textarea
+                                        v-model="item.breif_detail_th"
+                                        class="form-control custom-textarea"
+                                        rows="5"
+                                    ></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-10">
+                                <label for="" class="label label-required"
                                     >รายละเอียด :
                                 </label>
                                 <div>
@@ -131,9 +162,65 @@
                                 </div>
                             </div>
 
+                            <div class="form-group mt-20">
+                                <label for="" class="label label-required"
+                                    >อัตราค่าใช้บริการ (บาท) :
+                                </label>
+                                <br />
+                                <small>ถ้าฟรีระบุ 0</small>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <tr class="text-center">
+                                            <th>บุคลากรภายในคณะ</th>
+                                            <th>บุคลากรภายนอก</th>
+                                            <th>สถาบันการศึกษาอื่น</th>
+                                            <th>หน่วยงานราชการ/รัฐวิสาหกิจ</th>
+                                            <th>เอกชน</th>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="p-2">
+                                                <input
+                                                    type="number"
+                                                    class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                    v-model="item.price1"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                    v-model="item.price2"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                    v-model="item.price3"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                    v-model="item.price4"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                    v-model="item.price5"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
                             <div class="form-group mt-10">
                                 <label for="" class="label label-required"
-                                    >อัตราค่าใช้บริการ :
+                                    >รายละเอียดอัตราค่าใช้บริการอื่นๆ :
                                 </label>
                                 <div>
                                     <client-only>
@@ -165,9 +252,35 @@
                                 </div>
                             </div>
 
+                            <div class="form-group mt-20">
+                                <label for="" class="label label-required"
+                                    >เบอร์ติดต่อ :
+                                </label>
+                                <div>
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-plaintext"
+                                        v-model="item.phone"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-20">
+                                <label for="" class="label label-required"
+                                    >Email :
+                                </label>
+                                <div>
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-plaintext"
+                                        v-model="item.email"
+                                    />
+                                </div>
+                            </div>
+
                             <div class="form-group mt-10">
                                 <label for="" class="label label-required"
-                                    >ข้อมูลติดต่อ :
+                                    >ข้อมูลติดต่ออื่น ๆ :
                                 </label>
                                 <div>
                                     <client-only>
@@ -249,6 +362,7 @@ const item = ref({
     detail_en: "",
     department_id: null,
     service_category_id: null,
+    type_id: null,
     is_publish: {
         id: 1,
         value: 1,
@@ -262,6 +376,14 @@ const item = ref({
     location_en: "",
     contact_th: "",
     contact_en: "",
+    breif_detail_th: "",
+    price1: 0,
+    price2: 0,
+    price3: 0,
+    price4: 0,
+    price5: 0,
+    phone: "",
+    email: "",
 });
 
 const file = ref(null);
@@ -270,6 +392,7 @@ const selectOptions = ref({
     publishes: basic_data.data().publishes,
     departments: [],
     service_categories: [],
+    types: [],
 });
 
 const r = (Math.random() + 1).toString(36).substring(7);
@@ -395,6 +518,19 @@ const fetchServiceCategories = async () => {
     });
 };
 
+const fetchTypes = async () => {
+    let data = await $fetch(`${apiBase}/type`, {
+        params: {
+            is_publish: 1,
+            perPage: 100,
+        },
+    }).catch((error) => error.data);
+
+    selectOptions.value.types = data.data.map((e) => {
+        return { title: e.name_th, value: e.id };
+    });
+};
+
 const { data: res } = await useFetch(`${apiBase}/serve/${route.params.id}`, {
     server: true,
 });
@@ -411,6 +547,11 @@ item.value.service_category_id = {
     value: res.value.data.service_category_id,
 };
 
+item.value.type_id = {
+    title: res.value.data.type.name_th,
+    value: res.value.data.type_id,
+};
+
 item.value.is_publish =
     selectOptions.value.publishes[Number(res.value.data.is_publish)];
 
@@ -424,7 +565,8 @@ const onSubmit = async () => {
         item.value.title_th == "" ||
         item.value.title_th == null ||
         item.value.detail_th == "" ||
-        item.value.detail_th == null
+        item.value.detail_th == null ||
+        item.value.breif_detail_th == ""
     ) {
         useToast("โปรดระบุข้อมูลให้ครบถ้วน", "error");
         return;
@@ -448,6 +590,8 @@ const onSubmit = async () => {
             item.value.service_category_id == null
                 ? undefined
                 : item.value.service_category_id.value,
+        type_id:
+            item.value.type_id == null ? undefined : item.value.type_id.value,
     };
 
     var form_data = new FormData();

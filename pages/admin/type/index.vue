@@ -9,7 +9,7 @@
                             <span class="dvdr"
                                 ><i class="fa-solid fa-circle-small"></i
                             ></span>
-                            <span> งานบริการวิชาการ </span>
+                            <span> หมวดหมู่งานบริการวิชาการ </span>
                         </div>
                     </div>
                 </div>
@@ -28,10 +28,10 @@
                 <div class="col-12 col-lg-12 mb-20">
                     <input
                         class="form-control"
-                        v-model="search.title_th"
+                        v-model="search.name_th"
                         name="title"
                         type="text"
-                        placeholder="ชื่อหัวข้องานบริการวิชาการ"
+                        placeholder="ชื่อหมวดหมู่งานบริการวิชาการ"
                     />
                 </div>
 
@@ -47,7 +47,7 @@
             <div class="mt-10 mb-30 pl-10 pt-15 pb-10 bg-grey">
                 <h4 class="section-bg-primary mb-20">
                     <i class="fa-regular fa-list"></i>
-                    <span class="ml-10">รายการงานบริการวิชาการ</span>
+                    <span class="ml-10">รายการหมวดหมู่งานบริการวิชาการ</span>
                 </h4>
 
                 <div class="mb-20">
@@ -56,7 +56,7 @@
                         class="btn btn-primary"
                         @click="
                             () => {
-                                $router.push({ path: '/admin/serve/add' });
+                                $router.push({ path: '/admin/type/add' });
                             }
                         "
                     >
@@ -73,11 +73,7 @@
                             >
                                 <thead>
                                     <tr>
-                                        <th class="text-center">รูป</th>
-                                        <th class="text-center">ชื่อ (TH)</th>
-                                        <th class="text-center">หน่วยงาน</th>
-                                        <th class="text-center">หมวดหมู่</th>
-                                        <th class="text-center">ประเภท</th>
+                                        <th class="text-center">ชื่อหมวดหมู่</th>
                                         <th class="text-center">สถานะ</th>
                                         <th
                                             class="text-center"
@@ -89,27 +85,8 @@
                                 </thead>
                                 <tbody v-if="items.length != 0">
                                     <tr v-for="(it, idx) in items" :key="idx">
-                                        <td
-                                            class="text-center"
-                                            style="max-width: 150px"
-                                        >
-                                            <img
-                                                :src="it.serve_file"
-                                                alt=""
-                                                class="w-100"
-                                            />
-                                        </td>
                                         <td cla ss="text-center">
-                                            {{ it.title_th }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ it.department.name_th }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ it.type?.name_th }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ it.service_category.name_th }}
+                                            {{ it.name_th }}
                                         </td>
                                         <td class="text-center">
                                             <span
@@ -130,7 +107,7 @@
                                         <td class="text-center">
                                             <NuxtLink
                                                 :to="{
-                                                    name: 'admin-serve-edit-id',
+                                                    name: 'admin-type-edit-id',
                                                     params: { id: it.id },
                                                 }"
                                                 class="btn btn-warning text-uppercase ml-5"
@@ -216,11 +193,7 @@ const fetchItems = async () => {
         currentPage: currentPage.value,
     };
 
-    if (useCookie("user").value && useCookie("user").value.group_id == 2) {
-        params["department_id"] = useCookie("user").value.department_id;
-    }
-
-    let data = await $fetch(`${apiBase}/serve`, {
+    let data = await $fetch(`${apiBase}/type`, {
         params: params,
     }).catch((error) => error.data);
 
@@ -265,7 +238,7 @@ const onConfirmDelete = async (id) => {
 };
 
 const onDelete = async (id) => {
-    await $fetch(`${apiBase}/serve/${id}`, {
+    await $fetch(`${apiBase}/type/${id}`, {
         method: "delete",
     })
         .then((res) => {
@@ -281,7 +254,7 @@ const onDelete = async (id) => {
 };
 
 useHead({
-    title: "รายการการให้บริการ",
+    title: "จัดการข้อมูล | หมวดหมู่งานบริการวิชาการ",
 });
 </script>
 

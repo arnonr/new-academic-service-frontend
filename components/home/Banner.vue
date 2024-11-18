@@ -1,36 +1,38 @@
 <template>
-    <section class="slider__area p-relative" v-if="items.length != 0">
+    <section v-if="items.length != 0">
+        <!-- :pagination="pagination" -->
         <swiper
-            class="slider__active-12 slider__height-12 swiper-container"
-            :slidesPerView="1"
-            :spaceBetween="0"
-            :effect="'fade'"
-            :loop="true"
             :modules="modules"
-            :preventClicks="false"
-            :preventClicksPropagation="false"
-            :slideToClickedSlide="false"
+            :loop="true"
+            :effect="'fade'"
+            :spaceBetween="0"
+            class="swiper-fullwidth"
+            :breakpoints="{
+                '0': {
+                    slidesPerView: 1,
+                },
+                '768': {
+                    slidesPerView: 1,
+                },
+                '992': {
+                    slidesPerView: 1,
+                },
+            }"
+            :speed="5000"
             :autoplay="{
                 delay: 5000,
                 disableOnInteraction: true,
-            }"
-            :pagination="{
-                clickable: true,
             }"
             :navigation="{
                 nextEl: '.slider-button-12-next',
                 prevEl: '.slider-button-12-prev',
             }"
+            :pagination="true"
             v-if="items.length != 0"
         >
-            <swiper-slide
-                :class="`slider__item-11 slider__bg-11 ${it.bg} d-flex align-items-center`"
-                v-for="it in items"
-                :key="it.id"
-            >
-                <a :href="it.banner_url">
+            <swiper-slide v-for="it in items" :key="it.id">
+                <a :href="it.banner_url" style="width: 100%">
                     <img
-                        class="banner-image"
                         :src="it.banner_file"
                         :alt="it.title"
                         style="width: 100%"

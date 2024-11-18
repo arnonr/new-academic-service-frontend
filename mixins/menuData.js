@@ -16,7 +16,7 @@ export default {
                 },
                 {
                     id: 3,
-                    title: "ข่าวและประกาศ",
+                    title: "ทรัพย์สินทางปัญญา",
                     hasDropdown: false,
                     link: "/news",
                 },

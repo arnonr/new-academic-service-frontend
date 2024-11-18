@@ -209,7 +209,7 @@
 </template>
 
 <script>
-import menus from "./MenusCustom.vue";
+import menus from "./MenusHome.vue";
 import OffCanvasCustom from "~~/components/common/off-canvas/OffCanvasCustom.vue";
 import TranslateWidget from "~~/components/translate/GoogleTranslateWidget.vue";
 import SearchModal from "~~/components/search/SearchModal.vue";
@@ -273,15 +273,12 @@ export default {
 </script>
 <style scoped>
 .header__bottom-4 {
-    background-color: #f60;
-    /* color:black; */
-    /* border-top: 4px solid #000;*/
-    border-bottom: 1px solid #999; 
+    position: absolute;
+    /* background-color: #f60; */
+    /* border-top: 4px solid #000; */
     width: 100%;
     line-height: 2.5em;
-    padding-top: 0.5em;
-    min-height: 5em;
-    /* border: none; */
+    border: none;
 }
 
 .header__padding-4 {
@@ -298,7 +295,7 @@ export default {
 }
 
 .topbar {
-    /* margin-top: 1.5em; */
+    margin-top: 1.5em;
     /* border: 2px solid #ddd;
     border-radius: 10px;
     margin-top: 20px;
