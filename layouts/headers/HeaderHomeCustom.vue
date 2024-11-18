@@ -110,7 +110,7 @@
                 <div class="container">
                     <div class="mega-menu-wrapper p-relative">
                         <div class="row align-items-center">
-                            <div class="col-xxl-2 col-xl-2 col-lg-2 col-6">
+                            <div class="col-xxl-2 col-xl-2 col-lg-2 col-2">
                                 <div class="logo">
                                     <NuxtLink to="/">
                                         <img
@@ -133,6 +133,13 @@
                                         <!-- menus end -->
                                     </nav>
                                 </div>
+                            </div>
+
+                            <div
+                                class="col-xxl-2 col-xl-2 col-lg-2 text-center d-flex"
+                            >
+                                <HomeSearch />
+                                <!-- <TranslateWidget /> -->
                             </div>
                             <!-- hamburgur -->
                             <div class="col-xxl-2 col-xl-3 col-lg-3 col-6">

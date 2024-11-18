@@ -50,36 +50,20 @@
                 <div
                     class="offcanvas-header border-bottom border-block-end-dashed"
                 >
-                    <div class="btn-list">
+                    <div class="btn-list mb-4">
                         <button
-                            type="button"
-                            class="btn btn-sm btn-primary-light btn-wave"
+                            class="btn btn-outline btn-outline-primary mt-2"
+                            @click="onChangeType('all')"
                         >
-                            วิศวกรรม
+                            ทั้งหมด
                         </button>
                         <button
-                            type="button"
-                            class="btn btn-sm btn-primary-light btn-wave"
+                            class="btn btn-outline btn-outline-primary mt-2 ms-2"
+                            v-for="(type, idx) in selectOptions.types"
                         >
-                            เทคโนโลยี
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-primary-light btn-wave"
-                        >
-                            การบริหาร
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-primary-light btn-wave"
-                        >
-                            การจัดการ
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-primary-light btn-wave"
-                        >
-                            ประกัน
+                            <span @click="onChangeType(type.value)">{{
+                                type.title
+                            }}</span>
                         </button>
                     </div>
                 </div>
@@ -142,6 +126,9 @@ export default {
     async setup() {
         const runtimeConfig = useRuntimeConfig();
 
+        const router = useRouter();
+        const route = useRoute();
+
         const perPage = ref(12);
         const currentPage = ref(1);
         const totalPage = ref(1);
@@ -150,8 +137,28 @@ export default {
         const courseSearchOffcanvas = ref(null);
         const textSearch = ref("");
         const search = ref({
-            is_pubush: 1,
+            is_pubish: 1,
+            type_id: null,
         });
+
+        const selectOptions = ref({
+            types: [],
+        });
+
+        const fetchTypes = async () => {
+            let data = await $fetch(`${runtimeConfig.public.apiBase}/type`, {
+                params: {
+                    is_publish: 1,
+                    perPage: 100,
+                },
+            }).catch((error) => error.data);
+
+            selectOptions.value.types = data.data.map((e) => {
+                return { title: e.name_th, value: e.id };
+            });
+        };
+
+        fetchTypes();
 
         const items = ref([]);
 
@@ -193,12 +200,16 @@ export default {
                     `${runtimeConfig.public.apiBase}/serve`,
                     {
                         params: {
-                            textSearch: textSearch.value,
+                            text_all: textSearch.value,
                             ...search.value,
                             perPage: 8,
                             currentPage: 1,
                             orderBy: "id",
                             order: "desc",
+                            type_id:
+                                search.value.type_id != null
+                                    ? search.value.type_id
+                                    : undefined,
                             lang: useCookie("lang").value,
                         },
                     }
@@ -214,7 +225,32 @@ export default {
 
         if (res.value != null) {
             items.value = res.value.data;
+            totalPage.value = res.value.totalPage;
+            totalItems.value = res.value.totalData;
         }
+
+        const onChangeType = (type_id) => {
+            search.value.type_id = type_id;
+            if (type_id == "all") {
+                search.value.type_id = null;
+            }
+            refreshNuxtData("search-serve");
+        };
+
+        watch([textSearch], () => {
+            refreshNuxtData("search-serve");
+        });
+
+        watch(res, (newData) => {
+            console.log(newData);
+            if (newData) {
+                items.value = newData.data;
+                totalPage.value = newData.totalPage;
+                totalItems.value = newData.totalData;
+            } else {
+                items.value = [];
+            }
+        });
 
         return {
             items,
@@ -226,6 +262,8 @@ export default {
             currentPage,
             totalPage,
             totalItems,
+            selectOptions,
+            onChangeType,
         };
     },
 };
