@@ -10,51 +10,17 @@
             <div class="btn-list mb-4 text-center">
                 <button
                     class="btn btn-outline btn-outline-light mt-2"
-                    @click="onChangeType"
+                    @click="onChangeType('all')"
                 >
-                    ยานยนต์
+                    ทั้งหมด
                 </button>
                 <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
+                    class="btn btn-outline btn-outline-light mt-2 ms-2"
+                    v-for="(type, idx) in selectOptions.types"
                 >
-                    ไฟฟ้า
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    เทคโนโลยีสารสนเทศ
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    งานเชื่อม
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    อิเล็กทรอนิกส์
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    ทดสอบวัสดุ
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    แมคคาทรอนิกส์
-                </button>
-                <button
-                    class="btn btn-outline btn-outline-light ms-2 mt-2"
-                    @click="onChangeType"
-                >
-                    การบินและอวกาศ
+                    <span @click="onChangeType(type.value)">{{
+                        type.title
+                    }}</span>
                 </button>
             </div>
 
@@ -80,11 +46,10 @@
                 </button>
             </div> -->
 
-
             <div class="text-end">
                 <div class="slider-pagination-12 tp-swiper-fraction"></div>
                 <button
-                    class="btn btn-icon btn-sm btn-outline btn-outline-light  slider-button-12-prev"
+                    class="btn btn-icon btn-sm btn-outline btn-outline-light slider-button-12-prev"
                 >
                     <i class="fa fa-arrow-left"></i>
                 </button>
@@ -94,7 +59,6 @@
                     <i class="fa fa-arrow-right"></i>
                 </button>
             </div>
-
 
             <div><hr class="text-white" /></div>
             <div class="row gx-2 grid">
@@ -117,9 +81,9 @@
                             slidesPerView: 4,
                         },
                     }"
-                    :speed="5000"
+                    :speed="8000"
                     :autoplay="{
-                        delay: 5000,
+                        delay: 8000,
                         disableOnInteraction: true,
                     }"
                     :navigation="{
@@ -127,6 +91,7 @@
                         prevEl: '.slider-button-12-prev',
                     }"
                 >
+                    <!-- @swiper="onSwiper" -->
                     <swiper-slide v-for="(it, index) in items" :key="index">
                         <ListGridItem
                             :item="{
@@ -134,6 +99,13 @@
                                 id: it.id,
                                 title: it.title,
                                 file: it.serve_file,
+                                type: it.type,
+                                department:it.department,
+                                price1: it.price1,
+                                price2: it.price2,
+                                price3: it.price3,
+                                price4: it.price4,
+                                price5: it.price5,
                             }"
                         />
                     </swiper-slide>
@@ -206,12 +178,33 @@ export default {
         const runtimeConfig = useRuntimeConfig();
 
         const items = ref([]);
+        const mySwiper4 = ref(null);
 
         const search = ref({
             is_publish: 1,
+            type_id: null,
         });
 
-        const { data: res } = await useAsyncData("serve", async () => {
+        const selectOptions = ref({
+            types: [],
+        });
+
+        const fetchTypes = async () => {
+            let data = await $fetch(`${runtimeConfig.public.apiBase}/type`, {
+                params: {
+                    is_publish: 1,
+                    perPage: 100,
+                },
+            }).catch((error) => error.data);
+
+            selectOptions.value.types = data.data.map((e) => {
+                return { title: e.name_th, value: e.id };
+            });
+        };
+
+        fetchTypes();
+
+        const { data: res } = await useAsyncData("type-serve", async () => {
             let data = await $fetch(`${runtimeConfig.public.apiBase}/serve`, {
                 params: {
                     ...search.value,
@@ -219,6 +212,10 @@ export default {
                     currentPage: 1,
                     orderBy: "id",
                     order: "desc",
+                    type_id:
+                        search.value.type_id != null
+                            ? search.value.type_id
+                            : undefined,
                     lang: useCookie("lang").value,
                 },
             });
@@ -236,9 +233,43 @@ export default {
             items.value = [];
         }
 
+        const onChangeType = (type_id) => {
+            search.value.type_id = type_id;
+            if (type_id == "all") {
+                search.value.type_id = null;
+            }
+            refreshNuxtData("type-serve");
+        };
+
+        watch(res, (newData) => {
+            console.log(newData);
+            if (newData) {
+                items.value = newData.data;
+            } else {
+                items.value = [];
+            }
+        });
+
+        // watch(items, async () => {
+        //     await nextTick(); // รอให้ DOM อัปเดต
+        //     if (mySwiper4.value && mySwiper4.value) {
+        //         mySwiper4.value.slideTo(0); // รีเซ็ตตำแหน่งของ Swiper
+        //         mySwiper4.value.update(); // อัปเดต Swiper
+        //     }
+        // });
+
+        // รับ instance ของ Swiper ผ่าน onSwiper
+        // function onSwiper(swiper) {
+        //     mySwiper4.value = swiper;
+        // }
+
         return {
             items,
             modules: [EffectFade, Mousewheel, Navigation, Pagination, Autoplay],
+            onChangeType,
+            mySwiper4,
+            selectOptions,
+            // onSwiper,
         };
     },
 };

@@ -25,11 +25,21 @@
 
                     <div>
                         <i class="fa fa-home text-main"></i>
-                        <span class="text-gray-500"> คณะวิศวกรรมศาสตร์</span>
+                        <span class="text-gray-500 ms-1">
+                            {{ item.department?.name_th }}</span
+                        >
                     </div>
                     <div>
                         <i class="fa fa-money-bill text-main"></i>
-                        <span class="text-gray-500"> 4,500 บาท</span>
+                        <span class="text-gray-500 ms-1">
+                            {{
+                                item.price5 == null || item.price5 == 0
+                                    ? "-"
+                                    : item.price1 == item.price5
+                                    ? item.price5.toLocaleString('en-US') + " บาท"
+                                    : item.price1.toLocaleString('en-US') + "-" + item.price5.toLocaleString('en-US') + " บาท"
+                            }}
+                        </span>
                     </div>
                 </div>
                 <div
@@ -57,7 +67,7 @@
                                 class="fa-regular fa-tag"
                                 style="margin-right: 0px; color: #bdbdc6"
                             ></i>
-                            {{ item.type_name }}ยานยนต์
+                            {{ item.type?.name_th }}
                         </span>
                     </div>
                 </div>
