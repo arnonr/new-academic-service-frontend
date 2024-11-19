@@ -52,9 +52,9 @@
                                 <hr />
                                 <li>
                                     <nuxt-link
-                                        to="/news"
+                                        to="https://ip.kmutnb.ac.th/list"
                                         @click="closeOffcanvas"
-                                        >- ข่าวและประกาศ</nuxt-link
+                                        >- ทรัพย์สินทางปัญญา</nuxt-link
                                     >
                                 </li>
                                 <hr />

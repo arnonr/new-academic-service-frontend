@@ -404,3 +404,7 @@ p[data-f-id="pbf"] {
 .text-primary-link:hover {
     color: #000
 }
+
+.header__sticky.header-sticky .main-menu-4 ul li:hover > a {
+    color: #ff6600
+}
