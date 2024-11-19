@@ -11,47 +11,54 @@
                             ตัวกรองบริการวิชาการ
                         </h6>
                         <h6 class="mt-4 fw-bold">หมวดหมู่</h6>
-                        <div class="form-check">
+                        <div
+                            class="form-check"
+                            v-for="(t, idx) in selectOptions.types"
+                            :key="idx"
+                        >
                             <input
                                 class="form-check-input"
                                 type="checkbox"
-                                value=""
-                                id="shortDuration"
+                                v-model="search.type_ids"
+                                :value="t.value"
+                                :id="'checkbox-' + idx"
                             />
                             <label
                                 class="form-check-label fs-12"
-                                for="shortDuration"
-                                >วิศวกรรมศาสตร์
+                                :for="'checkbox-' + idx"
+                                >{{ t.title }}
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="shortDuration"
-                            />
-                            <label
-                                class="form-check-label fs-12"
-                                for="shortDuration"
-                            >
-                                การบินและอวกาศ
-                            </label>
-                        </div>
-
                         <div class="mt-6"><hr /></div>
 
                         <h6 class="mt-4 fw-bold">ประเภท</h6>
-                        <select class="form-select mb-3 form-control fs-12">
+                        <client-only>
+                            <v-select
+                                v-model="search.service_category_id"
+                                label="title"
+                                placeholder="ประเภท"
+                                :options="selectOptions.service_categories"
+                                class="v-select-no-border"
+                                :clearable="true"
+                            />
+                        </client-only>
+
+                        <!-- <select class="form-select mb-3 form-control fs-12">
                             <option selected>อบรม</option>
                             <option value="1">วิศวกรรม</option>
                             <option value="2">เทคโนโลยี</option>
-                        </select>
+                        </select> -->
                         <h6 class="mt-4 fw-bold">หน่วยงาน</h6>
-                        <select class="form-select mb-3 form-control fs-12">
-                            <option value="1">วิศวกรรม</option>
-                            <option value="2">เทคโนโลยี</option>
-                        </select>
+                        <client-only>
+                            <v-select
+                                v-model="search.department_id"
+                                label="title"
+                                placeholder="หน่วยงาน"
+                                :options="selectOptions.departments"
+                                class="v-select-no-border"
+                                :clearable="true"
+                            />
+                        </client-only>
                     </div>
                 </div>
                 <!-- Course List Section -->
@@ -68,11 +75,13 @@
                                 placeholder="ค้นหา"
                                 aria-label="Example text with button addon"
                                 aria-describedby="button-addon1"
+                                v-model="search.text_all"
                             />
                             <button
                                 class="btn btn-primary"
                                 type="button"
                                 id="button-addon1"
+                                @click="onSearch()"
                             >
                                 ค้นหา
                             </button>
@@ -82,25 +91,39 @@
                             <div class="fs-12">
                                 ผลลัพธ์การค้นหา {{ items.length }} หลักสูตร
                             </div>
-                            <div class="fs-12">
+                            <!-- <div class="fs-12">
                                 <select name="" id="" class="form-select">
                                     <option value="">ทั้งหมด</option>
                                     <option value="">ใหม่ล่าสุด</option>
                                     <option value="">เรียงจากตัวอักษร</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
                     <!-- Courses Listing -->
                     <div class="row">
-                        <div v-for="(it, idx) in items" class="col-12 col-md-12">
+                        <div
+                            v-for="(it, idx) in items"
+                            class="col-12 col-md-12"
+                        >
                             <ListGridItem2
                                 :item="{
                                     link: 'serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,
+                                    type: it.type,
+                                    department: it.department,
+                                    price1: it.price1,
+                                    price2: it.price2,
+                                    price3: it.price3,
+                                    price4: it.price4,
+                                    price5: it.price5,
+                                    unit_th: it.unit_th,
+                                    phone: it.phone,
+                                    email: it.email,
+                                    breif_detail_th: it.breif_detail_th,
                                 }"
                             />
                         </div>
@@ -122,7 +145,6 @@
     </section>
 </template>
 
-
 <script setup>
 import dayjs from "dayjs";
 import "dayjs/locale/th";
@@ -138,9 +160,8 @@ const router = useRouter();
 const config = useRuntimeConfig();
 const { apiBase } = config.public;
 
-
 const items = ref([]);
-const perPage = ref(12);
+const perPage = ref(10);
 const currentPage = ref(parseInt(route.query.page) || 1);
 const totalPage = ref(1);
 const totalItems = ref(0);
@@ -152,6 +173,7 @@ const search = ref({
     created_month: null,
     is_publish: 1,
     text_all: "",
+    type_ids: [],
 });
 
 const selectOptionsFields = [
@@ -178,6 +200,7 @@ const selectOptions = ref({
     ],
     service_categories: [],
     departments: [],
+    types: [],
 });
 
 // Function Fetch
@@ -208,22 +231,33 @@ const mapItemToProps = (item) => ({
 
 // // fetch
 const { data: departmentsData } = await useAsyncData("departments", () =>
-    fetchOptions("department", { is_publish: 1 })
+    fetchOptions("department", { is_publish: 1, perPage: 100 })
 );
 
 selectOptions.value.departments = departmentsData.value;
 
 const { data: serviceCategoriesData } = await useAsyncData(
     "service-categories",
-    () => fetchOptions("service-category", { is_publish: 1 })
+    () => fetchOptions("service-category", { is_publish: 1, perPage: 100 })
 );
 selectOptions.value.service_categories = serviceCategoriesData.value;
+
+const { data: typesData } = await useAsyncData("type", () =>
+    fetchOptions("type", { is_publish: 1, perPage: 100 })
+);
+selectOptions.value.types = typesData.value;
 
 if (route.query.service_category_id != null) {
     search.value.service_category_id =
         selectOptions.value.service_categories.find((x) => {
             return x.value == route.query.service_category_id;
         });
+}
+
+if (route.query.type_id != null) {
+    search.value.type_id = selectOptions.value.types.find((x) => {
+        return x.value == route.query.type_id;
+    });
 }
 
 if (route.query.page) {
@@ -237,8 +271,10 @@ const { data: res } = await useAsyncData("serve", async () => {
     let params = {
         ...search.value,
         text_all: text_all,
+        type_ids: search.value.type_ids ? search.value.type_ids.join(',') : undefined,
         service_category_id: search.value.service_category_id?.value,
         department_id: search.value.department_id?.value,
+        type_id: search.value.type_id?.value,
         created_year: search.value.created_year?.value,
         created_month: search.value.created_month?.value,
         perPage: perPage.value,
@@ -248,15 +284,17 @@ const { data: res } = await useAsyncData("serve", async () => {
     let data = await $fetch(`${apiBase}/serve`, {
         params: params,
     });
-    items.value = data.data;
-    totalPage.value = data.totalPage;
-    totalItems.value = data.totalData;
     return data;
 });
 
 items.value = res.value.data;
 totalPage.value = res.value.totalPage;
 totalItems.value = res.value.totalData;
+
+const onSearch = () => {
+    console.log("FREEDOM5");
+    refreshNuxtData("serve");
+};
 
 watch(
     [currentPage, search],
@@ -269,6 +307,16 @@ watch(
     },
     { deep: true }
 );
+
+watch(res, (newData) => {
+    if (newData) {
+        items.value = newData.data;
+        totalPage.value = newData.totalPage;
+        totalItems.value = newData.totalData;
+    } else {
+        items.value = [];
+    }
+});
 
 onMounted(async () => {});
 
@@ -294,5 +342,3 @@ textarea {
     border: var(--vs-border-width) var(--vs-border-style) var(--vs-border-color);
 }
 </style>
-
-

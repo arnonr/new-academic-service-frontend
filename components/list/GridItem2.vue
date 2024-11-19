@@ -15,8 +15,10 @@
                         />
                     </nuxt-link>
                     <div class="text-muted mt-3 text-start">
-                        <small> <i class="fa fa-tag"></i> งานอบรม, งานบริการวิชาการ</small>
-                    </div> 
+                        <small>
+                            <i class="fa fa-tag"></i> {{ item.type?.name_th }}</small
+                        >
+                    </div>
                 </div>
                 <!-- เนื้อหา -->
                 <div class="col-md-8">
@@ -34,14 +36,14 @@
                                 </h5>
                             </nuxt-link>
                             <button
-                                class="btn btn-info btn-sm btn-icon ms-2  mb-2"
+                                class="btn btn-info btn-sm btn-icon ms-2 mb-2"
                                 ref="tooltipButton"
                             >
                                 <i class="fa fa-info-circle text-white"></i>
                             </button>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered custom-table">
                                 <tr class="text-center">
                                     <th class="text-muted">บุคลากรภายในคณะ</th>
                                     <th class="text-muted">ภายในมหาวิทยาลัย</th>
@@ -54,18 +56,88 @@
                                     <th class="text-muted">เอกชน</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td class="text-muted">200</td>
-                                    <td class="text-muted">200</td>
-                                    <td class="text-muted">200</td>
-                                    <td class="text-muted">200</td>
-                                    <td class="text-muted">200</td>
+                                    <td class="text-muted">
+                                        {{
+                                            item.price1 != null
+                                                ? item.price1 != 0
+                                                    ? item.price1.toLocaleString(
+                                                          "en-US"
+                                                      )
+                                                    : "ฟรี"
+                                                : "-"
+                                        }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{
+                                            item.price2 != null
+                                                ? item.price1 != 0
+                                                    ? item.price1.toLocaleString(
+                                                          "en-US"
+                                                      )
+                                                    : "ฟรี"
+                                                : "-"
+                                        }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{
+                                            item.price3 != null
+                                                ? item.price1 != 0
+                                                    ? item.price1.toLocaleString(
+                                                          "en-US"
+                                                      )
+                                                    : "ฟรี"
+                                                : "-"
+                                        }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{
+                                            item.price4 != null
+                                                ? item.price1 != 0
+                                                    ? item.price1.toLocaleString(
+                                                          "en-US"
+                                                      )
+                                                    : "ฟรี"
+                                                : "-"
+                                        }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{
+                                            item.price5 != null
+                                                ? item.price1 != 0
+                                                    ? item.price1.toLocaleString(
+                                                          "en-US"
+                                                      )
+                                                    : "ฟรี"
+                                                : "-"
+                                        }}
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="text-end">
                                 <h5 class="text-danger mb-1">
-                                    THB 200-1,000 / ชิ้น
+                                    THB
+
+                                    {{
+                                        item.price5 == null || item.price5 == 0
+                                            ? "-"
+                                            : item.price1 == item.price5
+                                            ? item.price5.toLocaleString(
+                                                  "en-US"
+                                              ) +
+                                              " บาท / " +
+                                              item.unit_th
+                                            : item.price1.toLocaleString(
+                                                  "en-US"
+                                              ) +
+                                              "-" +
+                                              item.price5.toLocaleString(
+                                                  "en-US"
+                                              ) +
+                                              " บาท /" +
+                                              item.unit_th
+                                    }}
                                 </h5>
                             </div>
 
@@ -83,16 +155,17 @@
                         class="d-flex justify-content-center align-items-center flex-wrap gap-3"
                     >
                         <div>
-                            <i class="fa fa-home text-main"></i> คณะวิทยาศาสตร์
+                            <i class="fa fa-home text-main"></i>
+                            {{ item.department?.name_th }}
                         </div>
 
                         <div>
-                            <i class="fa fa-phone text-main"></i> 02-555-2000
-                            ต่อ 2270
+                            <i class="fa fa-phone text-main"></i>
+                            {{ item.phone }}
                         </div>
                         <div>
                             <i class="fa fa-envelope text-main"></i>
-                            contact@technopark.kmutnb.ac.th
+                            {{ item.email }}
                         </div>
                     </div>
                 </div>
@@ -113,7 +186,7 @@ export default {
             default: false,
         },
     },
-    setup() {
+    setup(props) {
         const tooltipButton = ref(null);
 
         onMounted(() => {
@@ -126,7 +199,7 @@ export default {
                         <hr />
                         </div>
                         <p class="mb-2  text-white" >
-                            หลักสูตร..............................................................................................................................
+                        ${props.item.breif_detail_th}
                         </p>`,
                 placement: "bottom", // กำหนดตำแหน่ง (top, bottom, left, right)
                 arrow: true, // แสดงลูกศร
@@ -140,106 +213,6 @@ export default {
     },
 };
 </script>
-
-<!-- <style scoped>
-.blog__item-10 {
-    border-radius: 0.5em;
-    border: solid 1px #eee;
-}
-
-.text-color-primary {
-    color: #f60;
-}
-
-.blog__grid-item .blog__content-10-top {
-    padding: 1em;
-    padding-top: 2em;
-    min-height: 220px;
-}
-
-.blog__content-10-bottom {
-    border-top: 0px;
-    padding: 1em;
-}
-
-.blog__grid-item .blog__title-10 {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.blog__grid-item .blog__meta-10 span {
-    color: var(--tp-text-4);
-}
-
-@media only screen and (min-width: 1025px) {
-    .w-img-news {
-        max-height: 190px;
-        min-height: 190px;
-    }
-    .img-news {
-        min-height: 190px !important;
-    }
-}
-</style> -->
-
-<!-- <style scoped>
-.item-row {
-    display: flex;
-    flex-wrap: nowrap;
-    border-bottom: 1px solid #eaeaea;
-    padding: 15px 0;
-}
-
-.item-column {
-    flex: 1;
-    padding: 0 10px;
-}
-
-.image-column {
-    flex: 0 0 15%;
-}
-
-.item-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.details-column {
-    flex: 0 0 25%;
-}
-
-.price-column {
-    flex: 0 0 20%;
-}
-
-.department-column {
-    flex: 0 0 20%;
-}
-
-.contact-column {
-    flex: 0 0 20%;
-}
-
-.item-title {
-    margin-bottom: 10px;
-}
-
-.item-description {
-    font-size: 14px;
-    color: #666;
-}
-
-@media (max-width: 768px) {
-    .item-row {
-        flex-wrap: wrap;
-    }
-    .item-column {
-        flex: 1 1 100%;
-        padding: 10px 0;
-    }
-}
-</style> -->
 
 <style scoped>
 .card-title {
@@ -258,5 +231,21 @@ export default {
 .img-fluid {
     height: 200px;
     object-fit: cover;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse; /* ทำให้เส้นขอบติดกัน */
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd; /* กำหนดเส้นขอบ */
+    padding: 8px; /* เพิ่มช่องว่างภายในเซลล์ */
+}
+
+.custom-table th {
+    background-color: #f2f2f2; /* เพิ่มสีพื้นหลังให้กับ header */
+    text-align: center;
 }
 </style>

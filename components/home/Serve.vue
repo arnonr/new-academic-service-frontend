@@ -49,6 +49,10 @@
                                 price3: it.price3,
                                 price4: it.price4,
                                 price5: it.price5,
+                                unit_th: it.unit_th,
+                                phone: it.phone,
+                                email: it.email,
+                                breif_detail_th: it.breif_detail_th,
                             }"
                         />
                     </swiper-slide>
