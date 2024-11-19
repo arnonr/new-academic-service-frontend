@@ -18,7 +18,7 @@ export default {
                     id: 3,
                     title: "ทรัพย์สินทางปัญญา",
                     hasDropdown: false,
-                    link: "/news",
+                    link: "https://ip.kmutnb.ac.th/list",
                 },
                 {
                     id: 4,
