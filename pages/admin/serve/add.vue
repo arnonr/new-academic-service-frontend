@@ -206,6 +206,17 @@
 
                             <div class="form-group mt-10">
                                 <label for="" class="label"
+                                    >หน่วย :
+                                </label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    v-model="item.unit_th"
+                                />
+                            </div>
+
+                            <div class="form-group mt-10">
+                                <label for="" class="label"
                                     >รายละเอียดอัตราค่าใช้บริการอื่นๆ :
                                 </label>
                                 <div>
@@ -367,7 +378,7 @@ const item = ref({
     price3: 0,
     price4: 0,
     price5: 0,
-    phone: "",  
+    phone: "",
     email: "",
 });
 const file = ref(null);

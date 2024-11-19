@@ -219,6 +219,18 @@
                             </div>
 
                             <div class="form-group mt-10">
+                                <label for="" class="label"
+                                    >หน่วย :
+                                </label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    v-model="item.unit_th"
+                                />
+                            </div>
+
+
+                            <div class="form-group mt-10">
                                 <label for="" class="label label-required"
                                     >รายละเอียดอัตราค่าใช้บริการอื่นๆ :
                                 </label>
