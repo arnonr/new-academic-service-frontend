@@ -1,4 +1,5 @@
 <template>
+    <CommonBanner />
     <section class="breadcrumb__area include-bg pb-40 pt-30 grey-bg-4">
         <div class="container">
             <div class="row">
@@ -103,6 +104,26 @@
                                                             class="fa-regular fa-tag"
                                                         ></i>
                                                         {{
+                                                            item.type
+                                                                ? item.type
+                                                                      .name_th
+                                                                : ""
+                                                        }}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="postbox__meta-item">
+                                                <div
+                                                    class="postbox__meta-content"
+                                                >
+                                                    <span
+                                                        class="postbox__meta-type"
+                                                    >
+                                                        <i
+                                                            class="fa-regular fa-list"
+                                                        ></i>
+                                                        {{
                                                             item.service_category
                                                                 ? item
                                                                       .service_category
@@ -157,7 +178,158 @@
                                         <div
                                             class="postbox__details-content-wrapper p-2"
                                         >
+                                            <div class="table-responsive">
+                                                <table
+                                                    class="table table-bordered custom-table"
+                                                >
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                บุคลากรภายในคณะ
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                ภายในมหาวิทยาลัย
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                สถาบันการศึกษาอื่น
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                หน่วยงานราชการ/รัฐวิสาหกิจ
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                เอกชน
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="text-center">
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    item.price1 !=
+                                                                    null
+                                                                        ? item.price1 !=
+                                                                          0
+                                                                            ? item.price1.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    item.price2 !=
+                                                                    null
+                                                                        ? item.price2 !=
+                                                                          0
+                                                                            ? item.price2.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    item.price3 !=
+                                                                    null
+                                                                        ? item.price3 !=
+                                                                          0
+                                                                            ? item.price3.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    item.price4 !=
+                                                                    null
+                                                                        ? item.price4 !=
+                                                                          0
+                                                                            ? item.price4.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    item.price5 !=
+                                                                    null
+                                                                        ? item.price5 !=
+                                                                          0
+                                                                            ? item.price5.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                             <div
+                                                class="d-flex justify-content-between mt-10"
+                                            >
+                                                <div class="text-end">
+                                                    <h5
+                                                        class="text-danger mb-1"
+                                                    >
+                                                        THB
+
+                                                        {{
+                                                            item.price5 ==
+                                                                null ||
+                                                            item.price5 == 0
+                                                                ? "-"
+                                                                : item.price1 ==
+                                                                  item.price5
+                                                                ? item.price5.toLocaleString(
+                                                                      "en-US"
+                                                                  ) +
+                                                                  " / " +
+                                                                  item.unit_th
+                                                                : item.price1.toLocaleString(
+                                                                      "en-US"
+                                                                  ) +
+                                                                  "-" +
+                                                                  item.price5.toLocaleString(
+                                                                      "en-US"
+                                                                  ) +
+                                                                  " บาท /" +
+                                                                  item.unit_th
+                                                        }}
+                                                    </h5>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="mt-20"
                                                 v-html="
                                                     item.rates_th == null
                                                         ? ''
@@ -207,7 +379,25 @@
                                         <div
                                             class="postbox__details-content-wrapper p-2"
                                         >
+                                            <div v-if="item.phone">
+                                                <i
+                                                    class="fa fa-phone text-main me-2 ms-1 fs-5 mb-20"
+                                                ></i>
+                                                <span class="fs-6">{{
+                                                    item.phone
+                                                }}</span>
+                                            </div>
+                                            <div v-if="item.email">
+                                                <i
+                                                    class="fa fa-envelope text-main me-2 ms-1 fs-5"
+                                                ></i>
+                                                <span class="fs-6">{{
+                                                    item.email
+                                                }}</span>
+                                            </div>
+
                                             <div
+                                            class="mt-20 ms-1"
                                                 v-html="
                                                     item.contact_th == null
                                                         ? ''
@@ -284,5 +474,21 @@ useHead({
 <style scoped>
 .breadcrumb__title {
     font-size: 50px;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse; /* ทำให้เส้นขอบติดกัน */
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd; /* กำหนดเส้นขอบ */
+    padding: 8px; /* เพิ่มช่องว่างภายในเซลล์ */
+}
+
+.custom-table th {
+    background-color: #f2f2f2; /* เพิ่มสีพื้นหลังให้กับ header */
+    text-align: center;
 }
 </style>
