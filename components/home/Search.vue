@@ -90,10 +90,21 @@
                         >
                             <ListGridItem2
                                 :item="{
-                                    link: 'serve/',
+                                  link: 'serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,
+                                    type: it.type,
+                                    department: it.department,
+                                    price1: it.price1,
+                                    price2: it.price2,
+                                    price3: it.price3,
+                                    price4: it.price4,
+                                    price5: it.price5,
+                                    unit_th: it.unit_th,
+                                    phone: it.phone,
+                                    email: it.email,
+                                    breif_detail_th: it.breif_detail_th,
                                 }"
                             />
                         </div>
