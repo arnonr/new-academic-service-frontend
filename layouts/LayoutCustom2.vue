@@ -1,6 +1,6 @@
 <template>
     <div :class="'fix ' + useSkin().value">
-        <HeaderCustom />
+        <!-- <HeaderCustom /> -->
 
         <main>
             <slot></slot>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import HeaderCustom from "./headers/HeaderCustom2.vue";
+// import HeaderCustom from "./headers/HeaderCustom2.vue";
 import FooterCustom from "./footers/FooterCustom.vue";
 import BackToTop from "./footers/component/BackToTop.vue";
 
 export default {
     components: {
-        HeaderCustom,
+        // HeaderCustom,
         FooterCustom,
         BackToTop,
     },
