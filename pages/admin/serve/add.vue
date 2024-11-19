@@ -153,7 +153,9 @@
                                     >อัตราค่าใช้บริการ (บาท) :
                                 </label>
                                 <br />
-                                <small>กรณี ไม่ระบุให้เว้นว่าง, กรณีฟรีระบุ 0 </small>
+                                <small
+                                    >กรณี ไม่ระบุ ให้เว้นว่าง, ฟรีระบุ 0
+                                </small>
                                 <div>
                                     <table class="table table-bordered">
                                         <tr class="text-center">
@@ -201,6 +203,19 @@
                                             </td>
                                         </tr>
                                     </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-10">
+                                <label for="" class="label label-required"
+                                    >หน่วย :
+                                </label>
+                                <div>
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-plaintext"
+                                        v-model="item.unit_th"
+                                    />
                                 </div>
                             </div>
 
