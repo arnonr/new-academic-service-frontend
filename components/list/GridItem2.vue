@@ -16,7 +16,8 @@
                     </nuxt-link>
                     <div class="text-muted mt-3 text-start">
                         <small>
-                            <i class="fa fa-tag"></i> {{ item.type?.name_th }}</small
+                            <i class="fa fa-tag"></i>
+                            {{ item.type?.name_th }}</small
                         >
                     </div>
                 </div>
@@ -44,74 +45,82 @@
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered custom-table">
-                                <tr class="text-center">
-                                    <th class="text-muted">บุคลากรภายในคณะ</th>
-                                    <th class="text-muted">ภายในมหาวิทยาลัย</th>
-                                    <th class="text-muted">
-                                        สถาบันการศึกษาอื่น
-                                    </th>
-                                    <th class="text-muted">
-                                        หน่วยงานราชการ/รัฐวิสาหกิจ
-                                    </th>
-                                    <th class="text-muted">เอกชน</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <td class="text-muted">
-                                        {{
-                                            item.price1 != null
-                                                ? item.price1 != 0
-                                                    ? item.price1.toLocaleString(
-                                                          "en-US"
-                                                      )
-                                                    : "ฟรี"
-                                                : "-"
-                                        }}
-                                    </td>
-                                    <td class="text-muted">
-                                        {{
-                                            item.price2 != null
-                                                ? item.price1 != 0
-                                                    ? item.price1.toLocaleString(
-                                                          "en-US"
-                                                      )
-                                                    : "ฟรี"
-                                                : "-"
-                                        }}
-                                    </td>
-                                    <td class="text-muted">
-                                        {{
-                                            item.price3 != null
-                                                ? item.price1 != 0
-                                                    ? item.price1.toLocaleString(
-                                                          "en-US"
-                                                      )
-                                                    : "ฟรี"
-                                                : "-"
-                                        }}
-                                    </td>
-                                    <td class="text-muted">
-                                        {{
-                                            item.price4 != null
-                                                ? item.price1 != 0
-                                                    ? item.price1.toLocaleString(
-                                                          "en-US"
-                                                      )
-                                                    : "ฟรี"
-                                                : "-"
-                                        }}
-                                    </td>
-                                    <td class="text-muted">
-                                        {{
-                                            item.price5 != null
-                                                ? item.price1 != 0
-                                                    ? item.price1.toLocaleString(
-                                                          "en-US"
-                                                      )
-                                                    : "ฟรี"
-                                                : "-"
-                                        }}
-                                    </td>
-                                </tr>
+                                <thead>
+                                    <tr class="text-center">
+                                        <th class="text-muted">
+                                            บุคลากรภายในคณะ
+                                        </th>
+                                        <th class="text-muted">
+                                            ภายในมหาวิทยาลัย
+                                        </th>
+                                        <th class="text-muted">
+                                            สถาบันการศึกษาอื่น
+                                        </th>
+                                        <th class="text-muted">
+                                            หน่วยงานราชการ/รัฐวิสาหกิจ
+                                        </th>
+                                        <th class="text-muted">เอกชน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center">
+                                        <td class="text-muted">
+                                            {{
+                                                item.price1 != null
+                                                    ? item.price1 != 0
+                                                        ? item.price1.toLocaleString(
+                                                              "en-US"
+                                                          )
+                                                        : "ฟรี"
+                                                    : "-"
+                                            }}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{
+                                                item.price2 != null
+                                                    ? item.price2 != 0
+                                                        ? item.price2.toLocaleString(
+                                                              "en-US"
+                                                          )
+                                                        : "ฟรี"
+                                                    : "-"
+                                            }}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{
+                                                item.price3 != null
+                                                    ? item.price3 != 0
+                                                        ? item.price3.toLocaleString(
+                                                              "en-US"
+                                                          )
+                                                        : "ฟรี"
+                                                    : "-"
+                                            }}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{
+                                                item.price4 != null
+                                                    ? item.price4 != 0
+                                                        ? item.price4.toLocaleString(
+                                                              "en-US"
+                                                          )
+                                                        : "ฟรี"
+                                                    : "-"
+                                            }}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{
+                                                item.price5 != null
+                                                    ? item.price5 != 0
+                                                        ? item.price5.toLocaleString(
+                                                              "en-US"
+                                                          )
+                                                        : "ฟรี"
+                                                    : "-"
+                                            }}
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -126,7 +135,7 @@
                                             ? item.price5.toLocaleString(
                                                   "en-US"
                                               ) +
-                                              " บาท / " +
+                                              " / " +
                                               item.unit_th
                                             : item.price1.toLocaleString(
                                                   "en-US"
@@ -180,7 +189,24 @@ import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css"; // optional for styling
 export default {
     props: {
-        item: {},
+        item: {
+            type: Object,
+            default: () => ({
+                price1: null,
+                price2: null,
+                price3: null,
+                price4: null,
+                price5: null,
+                type: { name_th: "" },
+                link: "",
+                id: "",
+                serve_file: "",
+                title: "",
+                department: { name_th: "" },
+                phone: "",
+                email: "",
+            }),
+        },
         masonry: {
             type: Boolean,
             default: false,

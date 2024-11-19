@@ -175,6 +175,7 @@ import {
     Pagination,
     Autoplay,
 } from "swiper";
+import { ref, onMounted, watch } from "vue";
 
 export default {
     components: { Swiper, SwiperSlide },
@@ -193,6 +194,10 @@ export default {
             types: [],
         });
 
+        onMounted(async () => {
+            await fetchTypes();
+        });
+
         const fetchTypes = async () => {
             let data = await $fetch(`${runtimeConfig.public.apiBase}/type`, {
                 params: {
@@ -200,13 +205,11 @@ export default {
                     perPage: 100,
                 },
             }).catch((error) => error.data);
-
+            console.log(data.data);
             selectOptions.value.types = data.data.map((e) => {
                 return { title: e.name_th, value: e.id };
             });
         };
-
-        fetchTypes();
 
         const { data: res } = await useAsyncData("type-serve", async () => {
             let data = await $fetch(`${runtimeConfig.public.apiBase}/serve`, {

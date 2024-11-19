@@ -89,7 +89,7 @@
 
                         <div class="d-flex justify-content-between mt-30 mb-30">
                             <div class="fs-12">
-                                ผลลัพธ์การค้นหา {{ items.length }} หลักสูตร
+                                ผลลัพธ์การค้นหา {{ totalItems }} รายการ
                             </div>
                             <!-- <div class="fs-12">
                                 <select name="" id="" class="form-select">
@@ -106,6 +106,7 @@
                         <div
                             v-for="(it, idx) in items"
                             class="col-12 col-md-12"
+                            v-if="items.length > 0"
                         >
                             <ListGridItem2
                                 :item="{
@@ -271,7 +272,9 @@ const { data: res } = await useAsyncData("serve", async () => {
     let params = {
         ...search.value,
         text_all: text_all,
-        type_ids: search.value.type_ids ? search.value.type_ids.join(',') : undefined,
+        type_ids: search.value.type_ids
+            ? search.value.type_ids.join(",")
+            : undefined,
         service_category_id: search.value.service_category_id?.value,
         department_id: search.value.department_id?.value,
         type_id: search.value.type_id?.value,
@@ -284,6 +287,8 @@ const { data: res } = await useAsyncData("serve", async () => {
     let data = await $fetch(`${apiBase}/serve`, {
         params: params,
     });
+
+
     return data;
 });
 
@@ -292,7 +297,6 @@ totalPage.value = res.value.totalPage;
 totalItems.value = res.value.totalData;
 
 const onSearch = () => {
-    console.log("FREEDOM5");
     refreshNuxtData("serve");
 };
 

@@ -30,8 +30,9 @@
                         id="offcanvasScrollingLabel"
                     >
                         <span v-if="textSearch == ''"
-                            >หัวข้อที่มีการค้นหามากที่สุด</span
+                            ></span
                         >
+                        <!-- หัวข้อที่มีการค้นหามากที่สุด -->
                         <span v-else
                             >12 ผลลัพธ์สำหรับการค้นหา
                             <span class="text-main"
@@ -49,22 +50,33 @@
 
                 <div
                     class="offcanvas-header border-bottom border-block-end-dashed"
+                    v-if="selectOptions.types && selectOptions.types.length > 0"
                 >
                     <div class="btn-list mb-4">
-                        <button
+                        <!-- <button
                             class="btn btn-outline btn-outline-primary mt-2"
                             @click="onChangeType('all')"
                         >
-                            ทั้งหมด
-                        </button>
+                            ทั้งหมด -->
+                        <!-- </button> -->
                         <button
                             class="btn btn-outline btn-outline-primary mt-2 ms-2"
                             v-for="(type, idx) in selectOptions.types"
+                            :key="idx"
+                        >
+                            <span @click="onChangeType(type.id)">{{
+                                type.name_th
+                            }}</span>
+                        </button>
+                        <!-- <button
+                            class="btn btn-outline btn-outline-primary mt-2 ms-2"
+                            v-for="(type, idx) in selectOptions.types"
+                            :key="idx"
                         >
                             <span @click="onChangeType(type.value)">{{
                                 type.title
                             }}</span>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div
@@ -124,11 +136,11 @@ export default {
         BlogPagination,
     },
     async setup() {
-        const runtimeConfig = useRuntimeConfig();
+        const config = useRuntimeConfig();
+        const { apiBase } = config.public;
 
         const router = useRouter();
         const route = useRoute();
-
         const perPage = ref(12);
         const currentPage = ref(1);
         const totalPage = ref(1);
@@ -145,20 +157,32 @@ export default {
             types: [],
         });
 
-        const fetchTypes = async () => {
-            let data = await $fetch(`${runtimeConfig.public.apiBase}/type`, {
+        // Function Fetch
+        const fetchOptions = async (endpoint, params = {}) => {
+            try {
+                const { data } = await $fetch(`${apiBase}/${endpoint}`, {
+                    params: params,
+                });
+
+                return data.map((e) => {
+                    return { title: e.name_th, value: e.id };
+                });
+            } catch (error) {
+                console.error("Error fetching ", error);
+                return [];
+            }
+        };
+
+        const { data: typesData } = useAsyncData("types", () =>
+            $fetch(`${apiBase}/type`, {
                 params: {
                     is_publish: 1,
                     perPage: 100,
                 },
-            }).catch((error) => error.data);
+            })
+        );
 
-            selectOptions.value.types = data.data.map((e) => {
-                return { title: e.name_th, value: e.id };
-            });
-        };
-
-        fetchTypes();
+        selectOptions.value.types = typesData.value;
 
         const items = ref([]);
 
@@ -196,24 +220,21 @@ export default {
         const { data: res } = await useAsyncData(
             "search-serve",
             async () => {
-                let data = await $fetch(
-                    `${runtimeConfig.public.apiBase}/serve`,
-                    {
-                        params: {
-                            text_all: textSearch.value,
-                            ...search.value,
-                            perPage: 8,
-                            currentPage: 1,
-                            orderBy: "id",
-                            order: "desc",
-                            type_id:
-                                search.value.type_id != null
-                                    ? search.value.type_id
-                                    : undefined,
-                            lang: useCookie("lang").value,
-                        },
-                    }
-                );
+                let data = await $fetch(`${apiBase}/serve`, {
+                    params: {
+                        text_all: textSearch.value,
+                        ...search.value,
+                        perPage: 8,
+                        currentPage: 1,
+                        orderBy: "id",
+                        order: "desc",
+                        type_id:
+                            search.value.type_id != null
+                                ? search.value.type_id
+                                : undefined,
+                        lang: useCookie("lang").value,
+                    },
+                });
 
                 return data && data.data ? { data: data.data } : { data: [] };
             },

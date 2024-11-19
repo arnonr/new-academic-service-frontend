@@ -79,6 +79,10 @@
                                         />
                                     </span> -->
                                     <HomeSearch />
+                                    <!-- <ClientOnly>
+                                        <TranslateWidget
+                                            id="translate_widget_1"
+                                    /></ClientOnly> -->
 
                                     <!-- hamburgur menu Mobile-->
                                     <div
@@ -136,11 +140,19 @@
                             </div>
 
                             <div
-                                class="col-xxl-2 col-xl-2 col-lg-2 text-center d-flex"
+                                class="col-xxl-2 col-xl-3 col-lg-3 col-6 d-none d-lg-block"
                             >
-                                <HomeSearch />
-                                <!-- <TranslateWidget /> -->
+                                <div
+                                    class="main-menu main-menu-4 main-menu-ff-space d-flex"
+                                >
+                                    <HomeSearch />
+                                    <!-- <ClientOnly>
+                                        <TranslateWidget
+                                            id="translate_widget_2"
+                                    /></ClientOnly> -->
+                                </div>
                             </div>
+
                             <!-- hamburgur -->
                             <div class="col-xxl-2 col-xl-3 col-lg-3 col-6">
                                 <div
@@ -201,7 +213,9 @@
                                 class="col-xxl-2 col-xl-2 col-lg-2 text-center d-flex"
                             >
                                 <HomeSearch />
-                                <TranslateWidget />
+                                <ClientOnly>
+                                    <TranslateWidget id="translate_widget_3"
+                                /></ClientOnly>
                             </div>
                         </div>
                     </div>
