@@ -63,14 +63,14 @@
                                     >
                                 </li>
                                 <hr />
-                                <li>
+                                <!-- <li>
                                     <nuxt-link
                                         to="/admin/news"
                                         @click="closeOffcanvas"
                                         >- ข้อมูลข่าว</nuxt-link
                                     >
                                 </li>
-                                <hr />
+                                <hr /> -->
                             </ul>
 
                             <ul
@@ -158,14 +158,14 @@
                                 >
                             </li>
                             <hr />
-                            <li>
+                            <!-- <li>
                                 <nuxt-link
                                     to="/admin/news"
                                     @click="closeOffcanvas"
                                     >- ข้อมูลข่าว</nuxt-link
                                 >
                             </li>
-                            <hr />
+                            <hr /> -->
                         </ul>
 
                         <ul

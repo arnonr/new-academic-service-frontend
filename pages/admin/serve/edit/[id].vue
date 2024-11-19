@@ -167,7 +167,7 @@
                                     >อัตราค่าใช้บริการ (บาท) :
                                 </label>
                                 <br />
-                                <small>ถ้าฟรีระบุ 0</small>
+                                <small>กรณี ไม่ระบุ ให้เว้นว่าง, ฟรีระบุ 0 </small>
                                 <div>
                                     <table class="table table-bordered">
                                         <tr class="text-center">
@@ -217,18 +217,6 @@
                                     </table>
                                 </div>
                             </div>
-
-                            <div class="form-group mt-10">
-                                <label for="" class="label"
-                                    >หน่วย :
-                                </label>
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    v-model="item.unit_th"
-                                />
-                            </div>
-
 
                             <div class="form-group mt-10">
                                 <label for="" class="label label-required"
@@ -389,11 +377,11 @@ const item = ref({
     contact_th: "",
     contact_en: "",
     breif_detail_th: "",
-    price1: 0,
-    price2: 0,
-    price3: 0,
-    price4: 0,
-    price5: 0,
+    price1: "",
+    price2: "",
+    price3: "",
+    price4: "",
+    price5: "",
     phone: "",
     email: "",
 });

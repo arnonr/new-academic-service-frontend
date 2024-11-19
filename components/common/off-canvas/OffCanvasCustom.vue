@@ -106,13 +106,13 @@
                                     >- ข้อมูลงานบริการวิชาการ</nuxt-link
                                 >
                             </li>
-                            <li>
+                            <!-- <li>
                                 <nuxt-link
                                     to="/admin/news"
                                     @click="closeOffcanvas"
                                     >- ข้อมูลข่าว</nuxt-link
                                 >
-                            </li>
+                            </li> -->
                             <hr />
                         </ul>
 
