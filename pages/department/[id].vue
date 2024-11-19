@@ -1,4 +1,5 @@
 <template>
+    <CommonBanner />
     <section class="breadcrumb__area include-bg pb-40 pt-30 grey-bg-4">
         <div class="container">
             <div class="row">
@@ -120,7 +121,7 @@
                                         </div>
                                         <!-- End Detail -->
                                         <!-- Detail -->
-                                        <div
+                                        <!-- <div
                                             class="mt-30 pl-10 pt-15 pb-10 bg-grey"
                                         >
                                             <h4 class="section-bg-primary">
@@ -141,7 +142,7 @@
                                                         route.params.id,
                                                 }"
                                             />
-                                        </div>
+                                        </div> -->
                                         <!-- End Detail -->
                                         <!-- Detail -->
                                         <div

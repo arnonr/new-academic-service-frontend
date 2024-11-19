@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="blog__list-item-wrapper">
-                                <NewsListItem
+                                <!-- <NewsListItem
                                     v-for="(it, i) in items"
                                     :key="i"
                                     :item="{
@@ -17,6 +17,27 @@
                                         created: it.created_serve,
                                         type_name: it.service_category.name_th,
                                         dep_name: it.department.name_th,
+                                    }"
+                                /> -->
+                                <ListGridItem2
+                                    v-for="(it, i) in items"
+                                    :key="i"
+                                    :item="{
+                                        link: 'serve/',
+                                        id: it.id,
+                                        title: it.title,
+                                        file: it.serve_file,
+                                        type: it.type,
+                                        department: it.department,
+                                        price1: it.price1,
+                                        price2: it.price2,
+                                        price3: it.price3,
+                                        price4: it.price4,
+                                        price5: it.price5,
+                                        unit_th: it.unit_th,
+                                        phone: it.phone,
+                                        email: it.email,
+                                        breif_detail_th: it.breif_detail_th,
                                     }"
                                 />
                             </div>
@@ -201,7 +222,6 @@ watchEffect(() => {
 useHead({
     title: "งานบริการวิชาการ",
 });
-
 </script>
 
 <style scoped></style>
