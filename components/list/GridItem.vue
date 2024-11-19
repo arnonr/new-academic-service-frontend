@@ -33,11 +33,17 @@
                         <i class="fa fa-money-bill text-main"></i>
                         <span class="text-gray-500 ms-1">
                             {{
-                                item.price5 == null || item.price5 == 0
+                                item.price5 == 0
+                                    ? "ฟรี"
+                                    : item.price5 == null
                                     ? "-"
                                     : item.price1 == item.price5
-                                    ? item.price5.toLocaleString('en-US') + " บาท"
-                                    : item.price1.toLocaleString('en-US') + "-" + item.price5.toLocaleString('en-US') + " บาท"
+                                    ? item.price5.toLocaleString("en-US") +
+                                      " บาท"
+                                    : item.price1.toLocaleString("en-US") +
+                                      "-" +
+                                      item.price5.toLocaleString("en-US") +
+                                      " บาท"
                             }}
                         </span>
                     </div>
