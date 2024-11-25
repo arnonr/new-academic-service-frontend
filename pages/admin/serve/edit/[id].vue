@@ -162,7 +162,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mt-20">
+                            <div
+                                class="form-group mt-20"
+                                v-if="item.service_category_id.value != 2"
+                            >
                                 <label for="" class="label label-required"
                                     >อัตราค่าใช้บริการ (บาท) :
                                 </label>
@@ -220,7 +223,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mt-10">
+                            <div
+                                class="form-group mt-10"
+                                v-if="item.service_category_id.value != 2"
+                            >
                                 <label for="" class="label label-required"
                                     >หน่วย :
                                 </label>
@@ -230,6 +236,110 @@
                                         class="form-control form-control-plaintext"
                                         v-model="item.unit_th"
                                     />
+                                </div>
+                            </div>
+
+                            <div
+                                class="form-group mt-20"
+                                v-if="item.service_category_id.value == 2"
+                            >
+                                <label for="" class="label label-required"
+                                    >อัตราค่าใช้บริการ (บาท) :
+                                </label>
+                                <br />
+                                <small
+                                    >กรณี ไม่ระบุ ให้เว้นว่าง, ฟรีระบุ 0
+                                </small>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <tr class="text-center">
+                                            <th>บุคลากรภายในคณะ</th>
+                                            <th>บุคลากรภายนอก</th>
+                                            <th>สถาบันการศึกษาอื่น</th>
+                                            <th>หน่วยงานราชการ/รัฐวิสาหกิจ</th>
+                                            <th>เอกชน</th>
+                                            <th>หน่วย</th>
+                                            <th>จัดการ</th>
+                                        </tr>
+                                        <template
+                                            v-for="(itt, idx) in item_test_type"
+                                            :key="idx"
+                                        >
+                                            <tr class="text-start">
+                                                <td class="p-2" colspan="7">
+                                                    <span>ชื่อรายการ</span>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control form-control-sm mx-auto text-start w-100"
+                                                        v-model="itt.name_th"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td class="p-2">
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.price1"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.price2"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.price3"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.price4"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.price5"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control form-control-sm mx-auto text-center input-small w-50"
+                                                        v-model="itt.unit_th"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <button
+                                                        @click="
+                                                            removeItemType(idx)
+                                                        "
+                                                        class="btn btn-danger"
+                                                    >
+                                                        ลบ
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </table>
+                                </div>
+
+                                <div clas="div-button text-right text-end">
+                                    <button
+                                        class="btn btn-success"
+                                        @click="addItemType()"
+                                    >
+                                        + เพิ่ม
+                                    </button>
                                 </div>
                             </div>
 
@@ -404,6 +514,8 @@ const item = ref({
 
 const file = ref(null);
 
+const item_test_type = ref([]);
+
 const selectOptions = ref({
     publishes: basic_data.data().publishes,
     departments: [],
@@ -547,6 +659,17 @@ const fetchTypes = async () => {
     });
 };
 
+const fetchTestTypes = async () => {
+    let data = await $fetch(`${apiBase}/test-type`, {
+        params: {
+            serve_id: item.value.id,
+            is_publish: 1,
+            perPage: 100,
+        },
+    }).catch((error) => error.data);
+
+    item_test_type.value = data.data;
+};
 
 const { data: res } = await useFetch(`${apiBase}/serve/${route.params.id}`, {
     server: true,
@@ -576,7 +699,6 @@ item.value.is_publish =
 
 // Event
 const onSubmit = async () => {
-    console.log();
     if (
         item.value.is_publish == null ||
         item.value.is_publish.value == null ||
@@ -625,7 +747,7 @@ const onSubmit = async () => {
         .then((res) => {
             if (res.msg == "success") {
                 useToast(type_object.text_success, "success");
-                router.push({ path: "/admin/serve/" });
+                saveItemTestTypes();
             } else {
                 throw new Error("ERROR");
             }
@@ -633,10 +755,73 @@ const onSubmit = async () => {
         .catch((error) => error.data);
 };
 
+const saveItemTestTypes = async () => {
+    let deleteUrl = `${apiBase}/test-type/delete-with-serve/${item.value.id}`;
+    await $fetch(deleteUrl, {
+        method: "delete",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    for (const itt of item_test_type.value) {
+        let type_object = {
+            text_success: "บันทึกข้อมูลสำเร็จ",
+            method: "post",
+            url: `${apiBase}/test-type`,
+        };
+
+        let data = {
+            ...itt,
+            serve_id: item.value.id,
+        };
+
+        await $fetch(type_object.url, {
+            method: type_object.method,
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => {
+                if (res.msg == "success") {
+                    useToast(type_object.text_success, "success");
+                } else {
+                    throw new Error("ERROR");
+                }
+            })
+            .catch((error) => error.data);
+    }
+
+    // Redirect after saving all item_test_type
+    router.push({ path: "/admin/serve/" });
+};
+
+const addItemType = () => {
+    item_test_type.value.push({
+        name_th: "",
+        name_en: null,
+        price1: "",
+        price2: "",
+        price3: "",
+        price4: "",
+        price5: "",
+        unit_th: "",
+        detail_th: "",
+        detail_en: "",
+        is_publish: 1,
+    });
+};
+
+const removeItemType = (index) => {
+    item_test_type.value.splice(index, 1);
+};
+
 onMounted(() => {
     fetchDepartments();
     fetchServiceCategories();
     initFroala();
     fetchTypes();
+    fetchTestTypes();
 });
 </script>
