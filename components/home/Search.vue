@@ -29,9 +29,7 @@
                         class="offcanvas-title mt-40"
                         id="offcanvasScrollingLabel"
                     >
-                        <span v-if="textSearch == ''"
-                            ></span
-                        >
+                        <span v-if="textSearch == ''"></span>
                         <!-- หัวข้อที่มีการค้นหามากที่สุด -->
                         <span v-else
                             >12 ผลลัพธ์สำหรับการค้นหา
@@ -90,7 +88,7 @@
                         >
                             <ListGridItem2
                                 :item="{
-                                  link: '/serve/',
+                                    link: '/service/serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,

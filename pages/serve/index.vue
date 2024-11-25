@@ -110,7 +110,7 @@
                         >
                             <ListGridItem2
                                 :item="{
-                                    link: '/serve/',
+                                    link: '/service/serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,

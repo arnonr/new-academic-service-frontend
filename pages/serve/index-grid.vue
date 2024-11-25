@@ -10,7 +10,7 @@
                                     v-for="(it, i) in items"
                                     :key="i"
                                     :item="{
-                                        link: '/serve/',
+                                        link: '/service/serve/',
                                         id: it.id,
                                         title: it.title,
                                         file: it.serve_file,
@@ -23,7 +23,7 @@
                                     v-for="(it, i) in items"
                                     :key="i"
                                     :item="{
-                                        link: '/serve/',
+                                        link: '/service/serve/',
                                         id: it.id,
                                         title: it.title,
                                         file: it.serve_file,
