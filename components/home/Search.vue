@@ -107,7 +107,7 @@
                             />
                         </div>
 
-                        <div class="col-xxl-12">
+                        <!-- <div class="col-xxl-12">
                             <div class="tp-pagination mt-30">
                                 <blog-pagination
                                     :totalPage="totalPage"
@@ -116,7 +116,7 @@
                                     @update:currentPage="currentPage = $event"
                                 />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div
                             class="card-footer text-center pe-2 mt-4"
@@ -150,7 +150,7 @@ export default {
 
         const router = useRouter();
         const route = useRoute();
-        const perPage = ref(12);
+        const perPage = ref(20);
         const currentPage = ref(1);
         const totalPage = ref(1);
         const totalItems = ref(0);
@@ -233,8 +233,8 @@ export default {
                     params: {
                         text_all: textSearch.value,
                         ...search.value,
-                        perPage: 8,
-                        currentPage: 1,
+                        perPage: perPage.value,
+                        currentPage: currentPage.value,
                         orderBy: "id",
                         order: "desc",
                         type_id:
