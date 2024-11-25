@@ -169,11 +169,19 @@
 
                         <div>
                             <i class="fa fa-phone text-main"></i>
-                            {{ item.phone }}
+                            {{
+                                item.phone && item.phone != "null"
+                                    ? item.phone
+                                    : "-"
+                            }}
                         </div>
                         <div>
                             <i class="fa fa-envelope text-main"></i>
-                            {{ item.email }}
+                            {{
+                                item.email && item.email != "null"
+                                    ? item.email
+                                    : "-"
+                            }}
                         </div>
                     </div>
                 </div>

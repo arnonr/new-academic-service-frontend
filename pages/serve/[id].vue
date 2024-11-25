@@ -312,8 +312,7 @@
                                                                 ? item.price5.toLocaleString(
                                                                       "en-US"
                                                                   ) +
-                                                                  " / " +
-                                                                  item.unit_th
+                                                                  unit_th
                                                                 : item.price1.toLocaleString(
                                                                       "en-US"
                                                                   ) +
@@ -321,8 +320,8 @@
                                                                   item.price5.toLocaleString(
                                                                       "en-US"
                                                                   ) +
-                                                                  " บาท /" +
-                                                                  item.unit_th
+                                                                  " บาท " +
+                                                                  unit_th
                                                         }}
                                                     </h5>
                                                 </div>
@@ -387,7 +386,7 @@
                                                     item.phone
                                                 }}</span>
                                             </div>
-                                            <div v-if="item.email">
+                                            <div v-if="item.email && item.email != null && item.email != 'null'">
                                                 <i
                                                     class="fa fa-envelope text-main me-2 ms-1 fs-5"
                                                 ></i>
@@ -465,6 +464,8 @@ const { data: res } = await useAsyncData("serve", async () => {
 });
 
 item.value = res.value.data;
+
+const unit_th = item.value.unit_th ? " / "+item.value.unit_th : "";
 
 useHead({
     title: item.value.title,
