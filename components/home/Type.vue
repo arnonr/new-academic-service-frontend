@@ -95,7 +95,7 @@
                     <swiper-slide v-for="(it, index) in items" :key="index">
                         <ListGridItem
                             :item="{
-                                link: '/service/serve/',
+                                link: '/serve/',
                                 id: it.id,
                                 title: it.title,
                                 file: it.serve_file,

@@ -5,6 +5,7 @@ export default defineNuxtConfig({
         apiSecret: process.env.NUXT_API_SECRET,
         public: {
             apiBase: process.env.NUXT_PUBLIC_API_BASE,
+            clientBase: process.env.NUXT_PUBLIC_CLIENT_BASE,
             contact_phone: process.env.NUXT_CONTACT_PHONE,
             contact_email: process.env.NUXT_CONTACT_EMAIL,
         },

@@ -86,9 +86,9 @@
                             v-for="(it, idx) in items"
                             class="col-12 col-md-12 text-start"
                         >
-                            <ListGridItem2
+                            <ListGridItem3
                                 :item="{
-                                    link: '/service/serve/',
+                                    link: '/serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,

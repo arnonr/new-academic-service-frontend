@@ -7,13 +7,13 @@
             <div class="row g-0">
                 <!-- รูปภาพ -->
                 <div class="col-md-4 text-center">
-                    <nuxt-link :to="item.link + item.id">
+                    <a :href="clientBase + item.link + item.id">
                         <img
                             :src="item.file"
                             alt="item image"
                             class="img-fluid rounded-4"
                         />
-                    </nuxt-link>
+                    </a>
                     <div class="text-muted mt-3 text-start">
                         <small>
                             <i class="fa fa-tag"></i>
@@ -28,14 +28,14 @@
                         <div
                             class="d-flex align-items-start justify-content-between"
                         >
-                            <nuxt-link
-                                :to="item.link + item.id"
+                            <a
+                                :href="clientBase + item.link + item.id"
                                 class="text-primary-link"
                             >
                                 <h5 class="card-title mb-2">
                                     {{ item.title }}
                                 </h5>
-                            </nuxt-link>
+                            </a>
                             <button
                                 class="btn btn-info btn-sm btn-icon ms-2 mb-2"
                                 ref="tooltipButton"
@@ -249,12 +249,11 @@
                                 </h5>
                             </div>
 
-                            <nuxt-link
-                                :to="item.link + item.id"
+                            <a
+                                :href="clientBase + item.link + item.id"
                                 class="btn btn-main-gradient"
+                                >ดูข้อมูล</a
                             >
-                                ดูข้อมูล
-                            </nuxt-link>
                         </div>
                     </div>
                 </div>
