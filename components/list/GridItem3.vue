@@ -339,7 +339,7 @@ export default {
                             <h5 class="text-white mt-2">ข้อมูลเบื้องต้น</h5>
                             <hr />
                             </div>
-                            <p class="mb-2  text-white" >
+                            <p class="mb-2  text-white" >   
                             ${props.item.breif_detail_th}
                             </p>`,
                     placement: "bottom", // กำหนดตำแหน่ง (top, bottom, left, right)
@@ -357,7 +357,6 @@ export default {
         watch(
             () => props.item.breif_detail_th,
             () => {
-                console.log("FREEDOM");
                 updateTooltip();
             }
         );
