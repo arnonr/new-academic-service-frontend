@@ -245,12 +245,8 @@
                                     }}
                                 </h5>
                             </div>
-
-                            <nuxt-link
-                                :to="item.link + item.id"
-                                class="btn btn-main-gradient"
-                                >ดูข้อมูล
-                            </nuxt-link>
+                            <a :href="item.link + item.id" 
+                            class="btn btn-main-gradient">ดูข้อมูล</a>
                         </div>
                     </div>
                 </div>
