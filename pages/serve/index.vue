@@ -110,7 +110,7 @@
                         >
                             <ListGridItem2
                                 :item="{
-                                    link: 'serve/',
+                                    link: '/serve/',
                                     id: it.id,
                                     title: it.title,
                                     file: it.serve_file,
@@ -225,7 +225,7 @@ const fetchOptions = async (endpoint, params = {}) => {
 };
 
 const mapItemToProps = (item) => ({
-    link: "serve/",
+    link: "/serve/",
     id: item.id,
     title: item.title,
     file: item.serve_file,
