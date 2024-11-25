@@ -723,7 +723,7 @@ const saveItemTestTypes = async () => {
         })
             .then((res) => {
                 if (res.msg == "success") {
-                    useToast(type_object.text_success, "success");
+                    // useToast(type_object.text_success, "success");
                 } else {
                     throw new Error("ERROR");
                 }
