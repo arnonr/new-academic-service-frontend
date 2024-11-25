@@ -399,6 +399,7 @@ const item = ref({
     price5: "",
     phone: "",
     email: "",
+    unit_th: "",
 });
 
 const file = ref(null);
@@ -567,6 +568,8 @@ item.value.type_id = {
     title: res.value.data.type.name_th,
     value: res.value.data.type_id,
 };
+
+item.value.unit_th = res.value.data.unit_th;
 
 item.value.is_publish =
     selectOptions.value.publishes[Number(res.value.data.is_publish)];
