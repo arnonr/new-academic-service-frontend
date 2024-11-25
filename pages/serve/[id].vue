@@ -617,9 +617,9 @@ item.value = res.value.data;
 
 const unit_th = item.value.unit_th ? " / " + item.value.unit_th : "";
 
-useHead({
-    title: item.value.title,
-});
+// useHead({
+//     title: item.value.title,
+// });
 </script>
 
 <style scoped>

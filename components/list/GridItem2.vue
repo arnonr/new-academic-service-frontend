@@ -221,8 +221,11 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <div class="text-end" >
-                                <h5 class="text-danger mb-1"   v-if="item.service_category_id != 2">
+                            <div class="text-end">
+                                <h5
+                                    class="text-danger mb-1"
+                                    v-if="item.service_category_id != 2"
+                                >
                                     THB
 
                                     {{
@@ -245,8 +248,11 @@
                                     }}
                                 </h5>
                             </div>
-                            <a :href="item.link + item.id" 
-                            class="btn btn-main-gradient">ดูข้อมูล</a>
+                            <a
+                                :href="item.link + item.id"
+                                class="btn btn-main-gradient"
+                                >ดูข้อมูล</a
+                            >
                         </div>
                     </div>
                 </div>
@@ -315,8 +321,7 @@ export default {
     setup(props) {
         const tooltipButton = ref(null);
 
-        onMounted(() => {
-            // ใช้ Tippy.js เพื่อสร้าง Tooltip
+        const updateTooltip = () => {
             useNuxtApp().$tippy(tooltipButton.value, {
                 theme: "light",
                 allowHTML: true,
@@ -331,7 +336,20 @@ export default {
                 arrow: true, // แสดงลูกศร
                 animation: "fade", // ใช้แอนิเมชัน
             });
+        };
+
+        onMounted(() => {
+            updateTooltip();
+            // // ใช้ Tippy.js เพื่อสร้าง Tooltip
         });
+
+        watch(
+            () => props.item.breif_detail_th,
+            () => {
+                console.log("FREEDOM");
+                updateTooltip();
+            }
+        );
 
         return {
             tooltipButton,
