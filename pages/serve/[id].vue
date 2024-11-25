@@ -181,6 +181,10 @@
                                             <div class="table-responsive">
                                                 <table
                                                     class="table table-bordered custom-table"
+                                                    v-if="
+                                                        item.service_category_id !=
+                                                        2
+                                                    "
                                                 >
                                                     <thead>
                                                         <tr class="text-center">
@@ -291,10 +295,151 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+
+                                                <table
+                                                    class="table table-bordered custom-table"
+                                                    v-else
+                                                >
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                รายการ
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                บุคลากรภายในคณะ
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                ภายในมหาวิทยาลัย
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                สถาบันการศึกษาอื่น
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                หน่วยงานราชการ/รัฐวิสาหกิจ
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                เอกชน
+                                                            </th>
+                                                            <th
+                                                                class="text-muted"
+                                                            >
+                                                                หน่วย
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr
+                                                            class="text-center"
+                                                            v-for="(
+                                                                itt, idx
+                                                            ) in item.test_types"
+                                                            :key="idx"
+                                                        >
+                                                            <td>
+                                                                {{
+                                                                    itt.name_th
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    itt.price1 !=
+                                                                    null
+                                                                        ? itt.price1 !=
+                                                                          0
+                                                                            ? itt.price1.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    itt.price2 !=
+                                                                    null
+                                                                        ? itt.price2 !=
+                                                                          0
+                                                                            ? itt.price2.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    itt.price3 !=
+                                                                    null
+                                                                        ? itt.price3 !=
+                                                                          0
+                                                                            ? itt.price3.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    itt.price4 !=
+                                                                    null
+                                                                        ? item.price4 !=
+                                                                          0
+                                                                            ? itt.price4.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-muted"
+                                                            >
+                                                                {{
+                                                                    itt.price5 !=
+                                                                    null
+                                                                        ? itt.price5 !=
+                                                                          0
+                                                                            ? itt.price5.toLocaleString(
+                                                                                  "en-US"
+                                                                              )
+                                                                            : "ฟรี"
+                                                                        : "-"
+                                                                }}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{
+                                                                    itt.unit_th
+                                                                }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                             <div
                                                 class="d-flex justify-content-between mt-10"
+                                                v-if="item.service_category_id != 2"
                                             >
                                                 <div class="text-end">
                                                     <h5
@@ -311,8 +456,7 @@
                                                                   item.price5
                                                                 ? item.price5.toLocaleString(
                                                                       "en-US"
-                                                                  ) +
-                                                                  unit_th
+                                                                  ) + unit_th
                                                                 : item.price1.toLocaleString(
                                                                       "en-US"
                                                                   ) +
@@ -386,7 +530,13 @@
                                                     item.phone
                                                 }}</span>
                                             </div>
-                                            <div v-if="item.email && item.email != null && item.email != 'null'">
+                                            <div
+                                                v-if="
+                                                    item.email &&
+                                                    item.email != null &&
+                                                    item.email != 'null'
+                                                "
+                                            >
                                                 <i
                                                     class="fa fa-envelope text-main me-2 ms-1 fs-5"
                                                 ></i>
@@ -396,7 +546,7 @@
                                             </div>
 
                                             <div
-                                            class="mt-20 ms-1"
+                                                class="mt-20 ms-1"
                                                 v-html="
                                                     item.contact_th == null
                                                         ? ''
@@ -465,7 +615,7 @@ const { data: res } = await useAsyncData("serve", async () => {
 
 item.value = res.value.data;
 
-const unit_th = item.value.unit_th ? " / "+item.value.unit_th : "";
+const unit_th = item.value.unit_th ? " / " + item.value.unit_th : "";
 
 useHead({
     title: item.value.title,

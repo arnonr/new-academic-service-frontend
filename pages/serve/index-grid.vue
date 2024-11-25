@@ -38,6 +38,9 @@
                                         phone: it.phone,
                                         email: it.email,
                                         breif_detail_th: it.breif_detail_th,
+                                        test_types: it.test_types,
+                                        service_category_id:
+                                            it.service_category_id,
                                     }"
                                 />
                             </div>

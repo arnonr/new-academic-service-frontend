@@ -17,6 +17,9 @@
                                         created: it.created_serve,
                                         type_name: it.service_category.name_th,
                                         dep_name: it.department.name_th,
+                                        test_types: it.test_types,
+                                        service_category_id:
+                                            it.service_category_id,
                                     }"
                                 />
                             </div>
@@ -164,8 +167,7 @@ watch(
     { deep: true }
 );
 
-onMounted(() => {
-});
+onMounted(() => {});
 
 watchEffect(() => {
     if (currentPage.value > totalPage.value)
@@ -182,7 +184,6 @@ watch(
 useHead({
     title: "งานบริการวิชาการ",
 });
-
 </script>
 
 <style scoped></style>
