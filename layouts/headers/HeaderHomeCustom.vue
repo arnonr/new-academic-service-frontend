@@ -246,7 +246,7 @@ export default {
     data() {
         return {
             isSticky: false,
-            authenticated: useCookie("academic_service_token");
+            authenticated: useCookie("academic_service_token"),
             isModalVisible: false,
         };
     },
