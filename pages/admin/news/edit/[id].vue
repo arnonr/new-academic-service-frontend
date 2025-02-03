@@ -93,7 +93,9 @@
 
                             <div class="form-group mt-10">
                                 <div class="row">
-                                    <label for="col-sm-12" class="label label-required"
+                                    <label
+                                        for="col-sm-12"
+                                        class="label label-required"
                                         >รูปภาพปก 500x350 :
                                     </label>
                                     <div class="col-sm-10">
@@ -550,5 +552,9 @@ onMounted(async () => {
     item.value.is_publish = selectOptions.value.publishes.find((x) => {
         return Number(res.value.data.is_publish) == x.value;
     });
+});
+
+definePageMeta({
+    middleware: "auth",
 });
 </script>

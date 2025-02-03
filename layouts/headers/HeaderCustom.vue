@@ -138,8 +138,8 @@
                             <div
                                 class="col-xxl-1 col-xl-1 col-lg-1 text-center d-flex"
                             >
-                                <HomeSearch/>
-                                
+                                <HomeSearch />
+
                                 <!-- <TranslateWidget /> -->
                             </div>
                             <!-- hamburgur -->
@@ -194,7 +194,6 @@
                                 </div>
                             </div>
 
-
                             <!-- <div
                                 class="col-xxl-1 col-xl-1 col-lg-1 text-center"
                             >
@@ -235,7 +234,7 @@ export default {
     data() {
         return {
             isSticky: false,
-            authenticated: useCookie("token"), //authenticated.value,
+            authenticated: useCookie("academic_service_token");
             isModalVisible: false,
         };
     },
@@ -286,7 +285,7 @@ export default {
     background-color: #f60;
     /* color:black; */
     /* border-top: 4px solid #000;*/
-    border-bottom: 1px solid #999; 
+    border-bottom: 1px solid #999;
     width: 100%;
     line-height: 2.5em;
     padding-top: 0.5em;

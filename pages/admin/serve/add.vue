@@ -150,7 +150,10 @@
 
                             <div
                                 class="form-group mt-20"
-                                v-if="item.service_category_id == null || item.service_category_id.value != 2"
+                                v-if="
+                                    item.service_category_id == null ||
+                                    item.service_category_id.value != 2
+                                "
                             >
                                 <label for="" class="label label-required"
                                     >อัตราค่าใช้บริการ (บาท) :
@@ -211,7 +214,10 @@
 
                             <div
                                 class="form-group mt-10"
-                                v-if="item.service_category_id == null || item.service_category_id.value != 2"
+                                v-if="
+                                    item.service_category_id == null ||
+                                    item.service_category_id.value != 2
+                                "
                             >
                                 <label for="" class="label label-required"
                                     >หน่วย :
@@ -227,7 +233,10 @@
 
                             <div
                                 class="form-group mt-20"
-                                v-if="item.service_category_id != null && item.service_category_id?.value == 2"
+                                v-if="
+                                    item.service_category_id != null &&
+                                    item.service_category_id?.value == 2
+                                "
                             >
                                 <label for="" class="label label-required"
                                     >อัตราค่าใช้บริการ (บาท) :
@@ -701,7 +710,6 @@ const onSubmit = async () => {
 };
 
 const saveItemTestTypes = async () => {
-
     for (const itt of item_test_type.value) {
         let type_object = {
             text_success: "บันทึกข้อมูลสำเร็จ",
@@ -763,6 +771,10 @@ onMounted(() => {
 
 useHead({
     title: "เพิ่มงานบริการวิชาการ",
+});
+
+definePageMeta({
+    middleware: "auth",
 });
 </script>
 

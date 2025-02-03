@@ -283,6 +283,10 @@ const onDelete = async (id) => {
 useHead({
     title: "รายการการให้บริการ",
 });
+
+definePageMeta({
+    middleware: "auth",
+});
 </script>
 
 <style scoped></style>

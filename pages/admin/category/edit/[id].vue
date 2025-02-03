@@ -174,6 +174,9 @@ const onSubmit = async () => {
         .catch((error) => error.data);
 };
 
-onMounted(() => {
+onMounted(() => {});
+
+definePageMeta({
+    middleware: "auth",
 });
 </script>

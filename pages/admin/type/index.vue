@@ -73,7 +73,9 @@
                             >
                                 <thead>
                                     <tr>
-                                        <th class="text-center">ชื่อหมวดหมู่</th>
+                                        <th class="text-center">
+                                            ชื่อหมวดหมู่
+                                        </th>
                                         <th class="text-center">สถานะ</th>
                                         <th
                                             class="text-center"
@@ -255,6 +257,10 @@ const onDelete = async (id) => {
 
 useHead({
     title: "จัดการข้อมูล | หมวดหมู่งานบริการวิชาการ",
+});
+
+definePageMeta({
+    middleware: "auth",
 });
 </script>
 

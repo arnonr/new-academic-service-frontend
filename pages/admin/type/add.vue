@@ -168,4 +168,8 @@ onMounted(() => {});
 useHead({
     title: "เพิ่มหมวดหมู่งานบริการวิชาการ",
 });
+
+definePageMeta({
+    middleware: "auth",
+});
 </script>

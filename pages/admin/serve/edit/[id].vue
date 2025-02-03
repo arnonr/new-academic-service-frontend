@@ -824,4 +824,8 @@ onMounted(() => {
     fetchTypes();
     fetchTestTypes();
 });
+
+definePageMeta({
+    middleware: "auth",
+});
 </script>

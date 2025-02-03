@@ -124,12 +124,9 @@ const selectOptions = ref({
 });
 
 // Function Fetch
-const { data: res } = await useFetch(
-    `${apiBase}/type/${route.params.id}`,
-    {
-        server: true,
-    }
-);
+const { data: res } = await useFetch(`${apiBase}/type/${route.params.id}`, {
+    server: true,
+});
 
 item.value = { ...res.value.data };
 
@@ -174,6 +171,9 @@ const onSubmit = async () => {
         .catch((error) => error.data);
 };
 
-onMounted(() => {
+onMounted(() => {});
+
+definePageMeta({
+    middleware: "auth",
 });
 </script>
