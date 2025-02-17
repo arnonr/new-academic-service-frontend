@@ -8,7 +8,7 @@
                 menu.megaMenu ? 'has-mega-menu' : ''
             }`"
         >
-            <NuxtLink :to="menu.link">
+            <NuxtLink :to="menu.link" :target="menu.id == 3 ? '_blank' : ''">
                 {{ menu.title }}
             </NuxtLink>
             <ul v-if="menu.hasDropdown" class="submenu">
@@ -51,14 +51,13 @@ export default {
 }
 .main-menu-4 ul li:hover > a {
     /* color: var(--tp-common-white); */
-    color: #FF6600;
+    color: #ff6600;
 }
-
 
 .main-menu-4 ul li:hover > a::after {
     /* color: var(--tp-common-white); */
-    
-    color: #FF6600;
+
+    color: #ff6600;
 }
 
 .main-menu ul li .submenu li a::before {
@@ -81,5 +80,4 @@ export default {
     min-width: 250px;
     line-height: 2.5em;
 }
-
 </style>
