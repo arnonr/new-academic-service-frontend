@@ -403,7 +403,7 @@
                                                                 {{
                                                                     itt.price4 !=
                                                                     null
-                                                                        ? item.price4 !=
+                                                                        ? itt.price4 !=
                                                                           0
                                                                             ? itt.price4.toLocaleString(
                                                                                   "en-US"

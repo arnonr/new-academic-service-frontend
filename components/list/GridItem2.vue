@@ -101,7 +101,7 @@
                                             }}
                                         </td>
                                         <td class="text-muted">
-                                            {{
+                                             {{
                                                 item.price4 != null
                                                     ? item.price4 != 0
                                                         ? item.price4.toLocaleString(
@@ -194,7 +194,7 @@
                                         <td class="text-muted">
                                             {{
                                                 itt.price4 != null
-                                                    ? item.price4 != 0
+                                                    ? itt.price4 != 0
                                                         ? itt.price4.toLocaleString(
                                                               "en-US"
                                                           )
