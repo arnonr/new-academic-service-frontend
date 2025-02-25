@@ -177,7 +177,7 @@
                                     <table class="table table-bordered">
                                         <tr class="text-center">
                                             <th>บุคลากรภายในคณะ</th>
-                                            <th>บุคลากรภายนอก</th>
+                                            <th>ภายในมหาวิทยาลัย</th>
                                             <th>สถาบันการศึกษาอื่น</th>
                                             <th>หน่วยงานราชการ/รัฐวิสาหกิจ</th>
                                             <th>เอกชน</th>
@@ -254,7 +254,7 @@
                                     <table class="table table-bordered">
                                         <tr class="text-center">
                                             <th>บุคลากรภายในคณะ</th>
-                                            <th>บุคลากรภายนอก</th>
+                                            <th>ภายในมหาวิทยาลัย</th>
                                             <th>สถาบันการศึกษาอื่น</th>
                                             <th>หน่วยงานราชการ/รัฐวิสาหกิจ</th>
                                             <th>เอกชน</th>
